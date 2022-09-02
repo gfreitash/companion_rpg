@@ -15,7 +15,7 @@ public class Item {
     private Item.TIPO tipo;
     private boolean magico;
 
-    enum TIPO {
+    public enum TIPO {
         ARMA, ARMADURA, MISCELANIA
     }
 

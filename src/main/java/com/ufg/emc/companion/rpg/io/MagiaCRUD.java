@@ -2,7 +2,9 @@ package com.ufg.emc.companion.rpg.io;
 
 import com.ufg.emc.companion.rpg.classes.Magia;
 
-public class MagiaCRUD implements CRUD<Magia>{
+import java.util.List;
+
+public class MagiaCRUD extends CRUD<Magia> {
 
     @Override
     public boolean salvar(Magia magia) {
@@ -22,5 +24,10 @@ public class MagiaCRUD implements CRUD<Magia>{
     @Override
     public boolean deletar(String identificador) {
         return false;
+    }
+
+    @Override
+    List<Magia> obterTodos() {
+        return null;
     }
 }

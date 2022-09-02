@@ -1,9 +1,14 @@
 package com.ufg.emc.companion.rpg.io;
 
-public interface CRUD<T> {
-    boolean salvar(T t);
-    boolean editar(String identificador, T t);
-    T obter(String identificador);
-    boolean deletar(String identificador);
+import com.google.gson.Gson;
 
+import java.util.List;
+
+public abstract class CRUD<T> {
+
+    abstract boolean salvar(T t);
+    abstract boolean editar(String identificador, T t);
+    abstract T obter(String identificador);
+    abstract boolean deletar(String identificador);
+    abstract List<T> obterTodos();
 }
