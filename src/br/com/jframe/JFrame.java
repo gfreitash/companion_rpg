@@ -3034,6 +3034,7 @@ public class JFrame extends javax.swing.JFrame {
         
         jLabel2.setIcon(new javax.swing.ImageIcon(mapaLocal));
         jLabel2.repaint();
+        //comentario
     }//GEN-LAST:event_jButton49ActionPerformed
 
     public static void main(String args[]) {
