@@ -3248,8 +3248,7 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField15ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        ArrayList<Hero> heroes = new ArrayList<>();
-   //         Hero.add(new Hero());
+
         
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -3308,12 +3307,6 @@ public class JFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-        
-        
-        ArrayList<Hero> heroes = new ArrayList<Hero>();
-        heroes.add(new Hero("tuts", 10, 10, 10));
-        
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
