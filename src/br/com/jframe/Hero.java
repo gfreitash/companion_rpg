@@ -1,20 +1,24 @@
 package br.com.jframe;
 
-public class Hero {
+public class Hero{
+
+    static int setAge() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     private String name;
     private double height;
     private double weight;
     private int age;
-    private String race;
-    private String clan;
+  //  private String race;
+    //private String clan;
 
-    public Hero(String name, double height, double weight, int age, String race, String clan) {
+    public Hero(String name, double height, double weight, int age) {
         this.name = name;
         this.height = height;
         this.weight = weight;
         this.age = age;
-        this.race = race;
-        this.clan = clan;
+     //   this.race = race;
+       // this.clan = clan;
     }
 
     public String getName() {
