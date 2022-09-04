@@ -16,14 +16,11 @@ import java.util.List;
 public class ItemCRUD implements CRUD<Item> {
     private final String localizacaoArquivo;
     private Gson gson;
+    
+    public static final String ITENS = "src/br/com/data/itens.json";
 
     public ItemCRUD(String localizacaoArquivo) {
         this.localizacaoArquivo = localizacaoArquivo;
-        gson = new GsonBuilder().setPrettyPrinting().create();
-    }
-    
-    public ItemCRUD() {
-        this.localizacaoArquivo = "src/br/com/data/itens.json";
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
@@ -48,7 +45,7 @@ public class ItemCRUD implements CRUD<Item> {
         int busca = Collections.binarySearch(itens, new Item(id));
 
         if(busca >= 0) {
-            Item edicao = new Item(id, item.getNome(), item.getDescricao(), item.getValor(), item.getTipo(), item.isMagico());
+            Item edicao = (Item) item.editarObjeto(id);
             itens.remove(busca);
             itens.add(busca, edicao);
 
@@ -66,7 +63,7 @@ public class ItemCRUD implements CRUD<Item> {
             return itens.get(busca);
         }
 
-        return null;
+        throw new RuntimeException("Item não encontrado");
     }
 
     @Override
@@ -79,7 +76,7 @@ public class ItemCRUD implements CRUD<Item> {
             return salvarListaJSON(itens);
         }
 
-        return false;
+        throw new RuntimeException("Item não encontrado");
     }
 
     @Override
@@ -91,7 +88,7 @@ public class ItemCRUD implements CRUD<Item> {
         List<Item> itens;
 
         try (FileReader leitor = new FileReader(localizacaoArquivo)) {
-            itens = new ArrayList<>(
+            itens = new ArrayList<Item>(
                     Arrays.asList(gson.fromJson(leitor, Item[].class))
             );
 

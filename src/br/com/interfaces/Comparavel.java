@@ -13,9 +13,13 @@ public abstract class Comparavel implements Comparable<Comparavel> {
         return identificador;
     }
 
-    public void setIdentificador(String identificador) {
+    protected void setIdentificador(String identificador) {
         this.identificador = Comparavel.transformarIdentificador(identificador);
     }
+    
+    public abstract Comparavel getModelo(String id);
+    
+    public abstract Comparavel editarObjeto(String id);
 
     @Override
     public abstract int hashCode();

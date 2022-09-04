@@ -19,6 +19,17 @@ public class Item extends Comparavel {
     private Item.TIPO tipo;
     private boolean magico;
 
+    @Override
+    public Comparavel editarObjeto(String id) {
+        Item item = this;
+        return new Item(id, item.getNome(), item.getDescricao(), item.getValor(), item.getTipo(), item.isMagico());
+    }
+
+    @Override
+    public Comparavel getModelo(String id) {
+        return new Item(id);
+    }
+
     public enum TIPO {
         ARMA, ARMADURA, MISCELANIA
     }
@@ -44,6 +55,8 @@ public class Item extends Comparavel {
     public Item(String identificador) {
         super(identificador);
     }
+    
+    public Item(){super("");}
 
     public double getValor() {
         return valor;

@@ -5,7 +5,7 @@ import br.com.io.ItemCRUD;
 import org.junit.Test;
 
 public class CRUDTest {
-    private final ItemCRUD itemCRUD = new ItemCRUD("src/br/com/data/itens.json");
+    private final ItemCRUD itemCRUD = new ItemCRUD(ItemCRUD.ITENS);
 
     @Test
     public void salvar() {

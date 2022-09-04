@@ -8,8 +8,11 @@ import br.com.classes.Item;
 import br.com.interfaces.Comparavel;
 import br.com.io.ItemCRUD;
 import java.awt.CardLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -53,6 +56,29 @@ public class Janela extends javax.swing.JFrame {
         criarItemDescricaoTextArea = new javax.swing.JTextArea();
         criarNpcPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        mostrarItensPanel = new javax.swing.JPanel();
+        mostrarItensTituloLabel = new javax.swing.JLabel();
+        mostrarItensTituloSeparator = new javax.swing.JSeparator();
+        mostrarItensListaItensScrollpane = new javax.swing.JScrollPane();
+        mostrarItensListaItensPanel = new javax.swing.JPanel();
+        carregandoPanel = new javax.swing.JPanel();
+        carregandoLabel = new javax.swing.JLabel();
+        editarItemPanel = new javax.swing.JPanel();
+        editarItemTituloLabel = new javax.swing.JLabel();
+        editarItemTituloSeparator = new javax.swing.JSeparator();
+        editarItemRodapeSeparator = new javax.swing.JSeparator();
+        editarItemSalvarBotao = new javax.swing.JButton();
+        editarItemNomeLabel = new javax.swing.JLabel();
+        editarItemNomeTextField = new javax.swing.JTextField();
+        editarItemValorTextField = new javax.swing.JTextField();
+        editarItemValorLabel = new javax.swing.JLabel();
+        editarItemTipoLabel = new javax.swing.JLabel();
+        editarItemTipoComboBox = new javax.swing.JComboBox<>();
+        editarItemMagicoCheckbox = new javax.swing.JCheckBox();
+        editarItemDescricaoLabel = new javax.swing.JLabel();
+        editarItemDescricaoScroolpane = new javax.swing.JScrollPane();
+        editarItemDescricaoTextArea = new javax.swing.JTextArea();
+        editarItemNomeOriginal = new javax.swing.JLabel();
         barraMenu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         itensMenu = new javax.swing.JMenu();
@@ -71,7 +97,7 @@ public class Janela extends javax.swing.JFrame {
         homePanel.setLayout(homePanelLayout);
         homePanelLayout.setHorizontalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 830, Short.MAX_VALUE)
+            .addGap(0, 883, Short.MAX_VALUE)
         );
         homePanelLayout.setVerticalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +197,7 @@ public class Janela extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(criarItemMagicoCheckbox))
                                     .addComponent(criarItemDescricaoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 77, Short.MAX_VALUE)))))
+                                .addGap(0, 130, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         criarItemPanelLayout.setVerticalGroup(
@@ -222,7 +248,7 @@ public class Janela extends javax.swing.JFrame {
             .addGroup(criarNpcPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(524, Short.MAX_VALUE))
+                .addContainerGap(577, Short.MAX_VALUE))
         );
         criarNpcPanelLayout.setVerticalGroup(
             criarNpcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,6 +259,216 @@ public class Janela extends javax.swing.JFrame {
         );
 
         painelPrincipal.add(criarNpcPanel, "criarNpcCard");
+
+        mostrarItensTituloLabel.setFont(new java.awt.Font("Noto Serif Medium", 0, 36)); // NOI18N
+        mostrarItensTituloLabel.setText("Itens");
+
+        javax.swing.GroupLayout mostrarItensListaItensPanelLayout = new javax.swing.GroupLayout(mostrarItensListaItensPanel);
+        mostrarItensListaItensPanel.setLayout(mostrarItensListaItensPanelLayout);
+        mostrarItensListaItensPanelLayout.setHorizontalGroup(
+            mostrarItensListaItensPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 862, Short.MAX_VALUE)
+        );
+        mostrarItensListaItensPanelLayout.setVerticalGroup(
+            mostrarItensListaItensPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
+        mostrarItensListaItensScrollpane.setViewportView(mostrarItensListaItensPanel);
+
+        javax.swing.GroupLayout mostrarItensPanelLayout = new javax.swing.GroupLayout(mostrarItensPanel);
+        mostrarItensPanel.setLayout(mostrarItensPanelLayout);
+        mostrarItensPanelLayout.setHorizontalGroup(
+            mostrarItensPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mostrarItensPanelLayout.createSequentialGroup()
+                .addGroup(mostrarItensPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mostrarItensPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(mostrarItensPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mostrarItensPanelLayout.createSequentialGroup()
+                                .addComponent(mostrarItensTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(mostrarItensTituloSeparator, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(mostrarItensPanelLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(mostrarItensListaItensScrollpane)))
+                .addContainerGap())
+        );
+        mostrarItensPanelLayout.setVerticalGroup(
+            mostrarItensPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mostrarItensPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mostrarItensTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mostrarItensTituloSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mostrarItensListaItensScrollpane)
+                .addContainerGap())
+        );
+
+        painelPrincipal.add(mostrarItensPanel, "mostrarItensCard");
+
+        carregandoLabel.setFont(new java.awt.Font("DejaVu Serif", 1, 72)); // NOI18N
+        carregandoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        carregandoLabel.setText("Carregando...");
+
+        javax.swing.GroupLayout carregandoPanelLayout = new javax.swing.GroupLayout(carregandoPanel);
+        carregandoPanel.setLayout(carregandoPanelLayout);
+        carregandoPanelLayout.setHorizontalGroup(
+            carregandoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(carregandoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(carregandoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 871, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        carregandoPanelLayout.setVerticalGroup(
+            carregandoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(carregandoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(carregandoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        painelPrincipal.add(carregandoPanel, "carregandoCard");
+
+        editarItemTituloLabel.setFont(new java.awt.Font("Noto Serif Medium", 0, 36)); // NOI18N
+        editarItemTituloLabel.setText("Editar Item");
+
+        editarItemSalvarBotao.setText("Salvar");
+        editarItemSalvarBotao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarItemSalvarBotaoActionPerformed(evt);
+            }
+        });
+
+        editarItemNomeLabel.setFont(new java.awt.Font("DejaVu Serif", 0, 14)); // NOI18N
+        editarItemNomeLabel.setText("Nome");
+
+        editarItemNomeTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarItemNomeTextFieldActionPerformed(evt);
+            }
+        });
+
+        editarItemValorTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarItemValorTextFieldActionPerformed(evt);
+            }
+        });
+
+        editarItemValorLabel.setFont(new java.awt.Font("DejaVu Serif", 0, 14)); // NOI18N
+        editarItemValorLabel.setText("Valor");
+
+        editarItemTipoLabel.setFont(new java.awt.Font("DejaVu Serif", 0, 14)); // NOI18N
+        editarItemTipoLabel.setText("Tipo");
+
+        editarItemTipoComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarItemTipoComboBoxActionPerformed(evt);
+            }
+        });
+
+        editarItemMagicoCheckbox.setFont(new java.awt.Font("DejaVu Serif", 0, 14)); // NOI18N
+        editarItemMagicoCheckbox.setText("É magico?");
+        editarItemMagicoCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarItemMagicoCheckboxActionPerformed(evt);
+            }
+        });
+
+        editarItemDescricaoLabel.setFont(new java.awt.Font("DejaVu Serif", 0, 18)); // NOI18N
+        editarItemDescricaoLabel.setText("Descrição");
+
+        editarItemDescricaoTextArea.setColumns(20);
+        editarItemDescricaoTextArea.setLineWrap(true);
+        editarItemDescricaoTextArea.setRows(5);
+        editarItemDescricaoScroolpane.setViewportView(editarItemDescricaoTextArea);
+
+        editarItemNomeOriginal.setText("jLabel2");
+        editarItemNomeOriginal.setEnabled(false);
+
+        javax.swing.GroupLayout editarItemPanelLayout = new javax.swing.GroupLayout(editarItemPanel);
+        editarItemPanel.setLayout(editarItemPanelLayout);
+        editarItemPanelLayout.setHorizontalGroup(
+            editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editarItemPanelLayout.createSequentialGroup()
+                .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editarItemPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarItemPanelLayout.createSequentialGroup()
+                                .addComponent(editarItemTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editarItemNomeOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(editarItemTituloSeparator, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(editarItemRodapeSeparator)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarItemPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(editarItemSalvarBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(editarItemPanelLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editarItemDescricaoScroolpane)
+                            .addGroup(editarItemPanelLayout.createSequentialGroup()
+                                .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(editarItemPanelLayout.createSequentialGroup()
+                                        .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(editarItemNomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(editarItemNomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(editarItemValorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(editarItemValorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(editarItemTipoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(editarItemTipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(editarItemMagicoCheckbox))
+                                    .addComponent(editarItemDescricaoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 130, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        editarItemPanelLayout.setVerticalGroup(
+            editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editarItemPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editarItemTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editarItemNomeOriginal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(editarItemPanelLayout.createSequentialGroup()
+                        .addComponent(editarItemTituloSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarItemPanelLayout.createSequentialGroup()
+                                .addComponent(editarItemNomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editarItemNomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarItemPanelLayout.createSequentialGroup()
+                                .addComponent(editarItemTipoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31))))
+                    .addGroup(editarItemPanelLayout.createSequentialGroup()
+                        .addComponent(editarItemValorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editarItemValorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editarItemTipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editarItemMagicoCheckbox))))
+                .addGap(30, 30, 30)
+                .addComponent(editarItemDescricaoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editarItemDescricaoScroolpane, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(editarItemRodapeSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editarItemSalvarBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        painelPrincipal.add(editarItemPanel, "editarItemCard");
 
         jMenu1.setText("File");
         barraMenu.add(jMenu1);
@@ -248,6 +484,11 @@ public class Janela extends javax.swing.JFrame {
         itensMenu.add(criarItemMenuItem);
 
         mostrarItensMenuItem.setText("Mostrar Itens");
+        mostrarItensMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrarItensMenuItemActionPerformed(evt);
+            }
+        });
         itensMenu.add(mostrarItensMenuItem);
 
         barraMenu.add(itensMenu);
@@ -336,7 +577,7 @@ public class Janela extends javax.swing.JFrame {
         }
         
         Item item = new Item(nome, descricao, valor, Item.TIPO.valueOf(tipo), isMagico);
-        ItemCRUD itemCrud = new ItemCRUD();
+        ItemCRUD itemCrud = new ItemCRUD(ItemCRUD.ITENS);
         if(itemCrud.salvar(item)) {
             JOptionPane.showMessageDialog(null, "O item foi salvo com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             criarItemNomeTextField.setText("");
@@ -350,6 +591,62 @@ public class Janela extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o item", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_criarItemSalvarBotaoActionPerformed
+
+    private void mostrarItensMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarItensMenuItemActionPerformed
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
+        cl.show(painelPrincipal, "carregandoCard");
+        mostrarItens();
+        cl.show(painelPrincipal, "mostrarItensCard");
+    }//GEN-LAST:event_mostrarItensMenuItemActionPerformed
+
+    private void editarItemSalvarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarItemSalvarBotaoActionPerformed
+        double valor;
+        String nome, descricao, tipo;
+        boolean isMagico;
+        try {
+            valor = Double.parseDouble(editarItemValorTextField.getText());
+            isMagico = editarItemMagicoCheckbox.isSelected();
+            
+            nome = editarItemNomeTextField.getText();
+            descricao = editarItemDescricaoTextArea.getText();
+            tipo = editarItemTipoComboBox.getSelectedItem().toString();
+            if("".equals(nome) || "".equals(descricao) || "".equals(tipo)) throw new NullPointerException();
+            
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "O campo valor aceita apenas valores numéricos", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        } catch(NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Há campos vazios. Por favor, preencha todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Item item = new Item(nome, descricao, valor, Item.TIPO.valueOf(tipo), isMagico);
+        ItemCRUD itemCrud = new ItemCRUD(ItemCRUD.ITENS);
+        if(itemCrud.editar(editarItemNomeOriginal.getText(),item)) {
+            JOptionPane.showMessageDialog(null, "O item foi salvo com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            this.mostrarItensMenuItemActionPerformed(null);
+        } else if(itemCrud.obter(Comparavel.transformarIdentificador(nome)) != null) {
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar o item.\nJá existe um item com esse nome.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar o item", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_editarItemSalvarBotaoActionPerformed
+
+    private void editarItemNomeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarItemNomeTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editarItemNomeTextFieldActionPerformed
+
+    private void editarItemValorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarItemValorTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editarItemValorTextFieldActionPerformed
+
+    private void editarItemTipoComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarItemTipoComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editarItemTipoComboBoxActionPerformed
+
+    private void editarItemMagicoCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarItemMagicoCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editarItemMagicoCheckboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -388,6 +685,8 @@ public class Janela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JLabel carregandoLabel;
+    private javax.swing.JPanel carregandoPanel;
     private javax.swing.JLabel criarItemDescricaoLabel;
     private javax.swing.JScrollPane criarItemDescricaoScroolPane;
     private javax.swing.JTextArea criarItemDescricaoTextArea;
@@ -404,13 +703,34 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JTextField criarItemValorTextField;
     private javax.swing.JMenuItem criarNpcMenuItem;
     private javax.swing.JPanel criarNpcPanel;
+    private javax.swing.JLabel editarItemDescricaoLabel;
+    private javax.swing.JScrollPane editarItemDescricaoScroolpane;
+    private javax.swing.JTextArea editarItemDescricaoTextArea;
+    private javax.swing.JCheckBox editarItemMagicoCheckbox;
+    private javax.swing.JLabel editarItemNomeLabel;
+    private javax.swing.JLabel editarItemNomeOriginal;
+    private javax.swing.JTextField editarItemNomeTextField;
+    private javax.swing.JPanel editarItemPanel;
+    private javax.swing.JSeparator editarItemRodapeSeparator;
+    private javax.swing.JButton editarItemSalvarBotao;
+    private javax.swing.JComboBox<String> editarItemTipoComboBox;
+    private javax.swing.JLabel editarItemTipoLabel;
+    private javax.swing.JLabel editarItemTituloLabel;
+    private javax.swing.JSeparator editarItemTituloSeparator;
+    private javax.swing.JLabel editarItemValorLabel;
+    private javax.swing.JTextField editarItemValorTextField;
     private javax.swing.JPanel homePanel;
     private javax.swing.JMenu itensMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JPanel mostrarItensListaItensPanel;
+    private javax.swing.JScrollPane mostrarItensListaItensScrollpane;
     private javax.swing.JMenuItem mostrarItensMenuItem;
+    private javax.swing.JPanel mostrarItensPanel;
+    private javax.swing.JLabel mostrarItensTituloLabel;
+    private javax.swing.JSeparator mostrarItensTituloSeparator;
     private javax.swing.JMenuItem mostrarNpcsMenuItem;
     private javax.swing.JMenu npcsMenu;
     private javax.swing.JPanel painelPrincipal;
@@ -420,6 +740,61 @@ public class Janela extends javax.swing.JFrame {
         //Tipos de item
         for(Item.TIPO tipo: Item.TIPO.values()){
             criarItemTipoComboBox.addItem(tipo.toString());
+            editarItemTipoComboBox.addItem(tipo.toString());
         }
     }
+
+    private void mostrarItens() {
+        mostrarItensListaItensPanel.setLayout(new GridBagLayout());
+        mostrarItensListaItensPanel.removeAll();
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        
+        ItemCRUD itemCRUD = new ItemCRUD(ItemCRUD.ITENS);
+        List<Item> itens = itemCRUD.obterTodos();
+        
+        for(int i = 0, count = 0; count < itens.size(); i++) {
+            for(int j = 0; j < 2 && count < itens.size(); j++, count++) {
+                final Item item = itens.get(count);
+                
+                DisplayItem displayItem = new DisplayItem(item);
+                displayItem.setBotaoEditarActionPerformed(() -> this.editarItem(item));
+                displayItem.setBotaoRemoverActionPerformed(() -> this.removerItem(item));
+                
+                gbc.gridx = j;
+                gbc.gridy = i;
+                mostrarItensListaItensPanel.add(displayItem, gbc);
+            }
+        }
+    }
+    
+    private void editarItem(Item item) {
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
+        
+        editarItemNomeTextField.setText(item.getNome());
+        editarItemValorTextField.setText(Double.toString(item.getValor()));
+        editarItemTipoComboBox.setSelectedIndex(0);
+        editarItemMagicoCheckbox.setSelected(item.isMagico());
+        editarItemDescricaoTextArea.setText(item.getDescricao());
+        editarItemNomeOriginal.setText(item.getNome());
+        editarItemNomeOriginal.setVisible(false);
+        
+        cl.show(painelPrincipal, "editarItemCard");
+    }
+
+    private void removerItem(Item item) {
+        int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o item \"" + item.getNome() + "\"?", "",
+                JOptionPane.YES_NO_OPTION);
+        
+        if(resposta != 0) {return;}
+        
+        ItemCRUD itemCRUD = new ItemCRUD(ItemCRUD.ITENS);
+        if(itemCRUD.deletar(Comparavel.transformarIdentificador(item.getNome()))) {
+            JOptionPane.showMessageDialog(null, "O item foi deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            this.mostrarItensMenuItemActionPerformed(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "Não foi possível deletar o item.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
 }
