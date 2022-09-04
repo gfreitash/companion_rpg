@@ -4,6 +4,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.*;
+import java.util.Random;
 
 //Teste
 public class JFrame extends javax.swing.JFrame {
@@ -127,32 +128,32 @@ public class JFrame extends javax.swing.JFrame {
         jPanel28 = new javax.swing.JPanel();
         Dice = new javax.swing.JPanel();
         jButton15 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        BotaoRolar = new javax.swing.JButton();
         jTextField4 = new javax.swing.JTextField();
         jPanel23 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        CBoxD4 = new javax.swing.JComboBox<>();
         jPanel29 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        CBoxD8 = new javax.swing.JComboBox<>();
         jPanel30 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        CBoxD10 = new javax.swing.JComboBox<>();
         jPanel31 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        CBoxD12 = new javax.swing.JComboBox<>();
         jPanel32 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        CBoxD20 = new javax.swing.JComboBox<>();
         jPanel33 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        CBoxD6 = new javax.swing.JComboBox<>();
         World = new javax.swing.JPanel();
         jButton17 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
@@ -1563,7 +1564,7 @@ public class JFrame extends javax.swing.JFrame {
                 jButton15ActionPerformed(evt);
             }
         });
-
+        
         jButton11.setText("jButton11");
 
         jTextField4.setText("jTextField4");
@@ -1581,10 +1582,10 @@ public class JFrame extends javax.swing.JFrame {
         jLabel4.setText("Tetraedro");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        CBoxD4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        CBoxD4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                CBoxD4ActionPerformed(evt);
             }
         });
 
@@ -1599,7 +1600,7 @@ public class JFrame extends javax.swing.JFrame {
                     .addGroup(jPanel23Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CBoxD4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
         );
         jPanel23Layout.setVerticalGroup(
@@ -1610,7 +1611,7 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBoxD4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -1627,10 +1628,10 @@ public class JFrame extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Número de jogadas :");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        CBoxD8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        CBoxD8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                CBoxD8ActionPerformed(evt);
             }
         });
 
@@ -1645,7 +1646,7 @@ public class JFrame extends javax.swing.JFrame {
                     .addGroup(jPanel29Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CBoxD8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
         );
         jPanel29Layout.setVerticalGroup(
@@ -1656,7 +1657,7 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBoxD8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -1673,10 +1674,10 @@ public class JFrame extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Número de jogadas :");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        CBoxD10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        CBoxD10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                CBoxD10ActionPerformed(evt);
             }
         });
 
@@ -1691,7 +1692,7 @@ public class JFrame extends javax.swing.JFrame {
                     .addGroup(jPanel30Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CBoxD10, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
         );
         jPanel30Layout.setVerticalGroup(
@@ -1702,7 +1703,7 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBoxD10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -1719,10 +1720,10 @@ public class JFrame extends javax.swing.JFrame {
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
         jLabel35.setText("Número de jogadas :");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+        CBoxD12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        CBoxD12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox5ActionPerformed(evt);
+                CBoxD12ActionPerformed(evt);
             }
         });
 
@@ -1737,7 +1738,7 @@ public class JFrame extends javax.swing.JFrame {
                     .addGroup(jPanel31Layout.createSequentialGroup()
                         .addComponent(jLabel35)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CBoxD12, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
         );
         jPanel31Layout.setVerticalGroup(
@@ -1748,7 +1749,7 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBoxD12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -1765,10 +1766,10 @@ public class JFrame extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Número de jogadas :");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+        CBoxD20.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        CBoxD20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox4ActionPerformed(evt);
+                CBoxD20ActionPerformed(evt);
             }
         });
 
@@ -1783,7 +1784,7 @@ public class JFrame extends javax.swing.JFrame {
                     .addGroup(jPanel32Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CBoxD20, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
         );
         jPanel32Layout.setVerticalGroup(
@@ -1794,7 +1795,7 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBoxD20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -1811,10 +1812,10 @@ public class JFrame extends javax.swing.JFrame {
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
         jLabel37.setText("Número de jogadas :");
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        jComboBox6.addActionListener(new java.awt.event.ActionListener() {
+        CBoxD6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        CBoxD6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox6ActionPerformed(evt);
+                CBoxD6ActionPerformed(evt);
             }
         });
 
@@ -1829,7 +1830,7 @@ public class JFrame extends javax.swing.JFrame {
                     .addGroup(jPanel33Layout.createSequentialGroup()
                         .addComponent(jLabel37)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CBoxD6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
         );
         jPanel33Layout.setVerticalGroup(
@@ -1840,7 +1841,7 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBoxD6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -1889,7 +1890,7 @@ public class JFrame extends javax.swing.JFrame {
                         .addGroup(DiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(DiceLayout.createSequentialGroup()
-                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BotaoRolar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -3244,29 +3245,29 @@ public class JFrame extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnMapActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void CBoxD4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBoxD4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_CBoxD4ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void CBoxD8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBoxD8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_CBoxD8ActionPerformed
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void CBoxD10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBoxD10ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_CBoxD10ActionPerformed
 
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+    private void CBoxD20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBoxD20ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
+    }//GEN-LAST:event_CBoxD20ActionPerformed
 
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+    private void CBoxD12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBoxD12ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ActionPerformed
+    }//GEN-LAST:event_CBoxD12ActionPerformed
 
-    private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
+    private void CBoxD6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBoxD6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox6ActionPerformed
+    }//GEN-LAST:event_CBoxD6ActionPerformed
 
     private void txtHeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHeightActionPerformed
         String strHeight = txtHeight.getText();
@@ -3275,6 +3276,53 @@ public class JFrame extends javax.swing.JFrame {
     private void txtWeight1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWeight1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtWeight1ActionPerformed
+
+    private void BotaoRolarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoRolarActionPerformed
+        ArrayList <String> Lançamentos = new ArrayList();
+        
+        int QuantD4 = CBoxD4.getSelectedIndex();
+        int QuantD6 = CBoxD6.getSelectedIndex();
+        int QuantD8 = CBoxD8.getSelectedIndex();
+        int QuantD10 = CBoxD10.getSelectedIndex();
+        int QuantD12 = CBoxD12.getSelectedIndex();
+        int QuantD20 = CBoxD20.getSelectedIndex();
+        
+        for(int i = 0; i == QuantD4; i++){
+            Lançamentos.add(Double.toString(Math.ceil(Math.random()*4)));
+               
+        }
+        
+        for(int i = 0; i == QuantD6; i++){
+            Lançamentos.add(Double.toString(Math.ceil(Math.random()*6)));
+            
+        }
+        
+        for(int i = 0; i == QuantD8; i++){
+            Lançamentos.add(Double.toString(Math.ceil(Math.random()*8)));
+            
+        }
+        
+        for(int i = 0; i == QuantD10; i++){
+            Lançamentos.add(Double.toString(Math.ceil(Math.random()*10)));
+            
+        }
+        
+        for(int i = 0; i == QuantD12; i++){
+            Lançamentos.add(Double.toString(Math.ceil(Math.random()*12)));
+            
+        }
+        
+        for(int i = 0; i == QuantD20; i++){
+            Lançamentos.add(Double.toString(Math.ceil(Math.random()*20)));
+            
+        } 
+        
+        for(int i = 0; i == Lançamentos.size(); i++){
+            
+            //Aqui vai ficar a saida dos rolls
+            //Desisti de fazer pq n aguentava mais mt sono
+        }
+    }//GEN-LAST:event_BotaoRolarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -3312,6 +3360,13 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotaoRolar;
+    private javax.swing.JComboBox<String> CBoxD10;
+    private javax.swing.JComboBox<String> CBoxD12;
+    private javax.swing.JComboBox<String> CBoxD20;
+    private javax.swing.JComboBox<String> CBoxD4;
+    private javax.swing.JComboBox<String> CBoxD6;
+    private javax.swing.JComboBox<String> CBoxD8;
     private javax.swing.JPanel Dice;
     private javax.swing.JPanel GControlPanel;
     private javax.swing.JPanel HeroCr;
@@ -3387,13 +3442,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton83;
     private javax.swing.JButton jButton84;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox12;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
