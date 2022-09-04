@@ -13,20 +13,29 @@ import java.util.Objects;
  * @author gfreitash
  */
 public class Item extends Comparavel {
-    private double valor;
     private String nome;
     private String descricao;
+    private double valor;
     private Item.TIPO tipo;
     private boolean magico;
+
+    @Override
+    public Comparavel editarObjeto(String id) {
+        Item item = this;
+        return new Item(id, item.getNome(), item.getDescricao(), item.getValor(), item.getTipo(), item.isMagico());
+    }
+
+    @Override
+    public Comparavel getModelo(String id) {
+        return new Item(id);
+    }
 
     public enum TIPO {
         ARMA, ARMADURA, MISCELANIA
     }
 
-    public Item(double valor, String nome, String descricao, Item.TIPO tipo, boolean magico) {
-        super.setIdentificador(
-                nome.replace(" ", "_").toUpperCase()
-        );
+    public Item(String nome, String descricao, double valor, Item.TIPO tipo, boolean magico) {
+        super(nome);
         this.valor = valor;
         this.nome = nome;
         this.descricao = descricao;
@@ -34,8 +43,8 @@ public class Item extends Comparavel {
         this.magico = magico;
     }
 
-    public Item(String identificador, double valor, String nome, String descricao, Item.TIPO tipo, boolean magico) {
-        super.setIdentificador(identificador);
+    public Item(String identificador, String nome, String descricao, double valor, Item.TIPO tipo, boolean magico) {
+        super(identificador);
         this.valor = valor;
         this.nome = nome;
         this.descricao = descricao;
@@ -44,8 +53,10 @@ public class Item extends Comparavel {
     }
 
     public Item(String identificador) {
-        super.setIdentificador(identificador);
+        super(identificador);
     }
+    
+    public Item(){super("");}
 
     public double getValor() {
         return valor;

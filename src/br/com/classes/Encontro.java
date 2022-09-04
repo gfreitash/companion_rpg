@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Encontro {
-    private List<NPC> npcs = new ArrayList<>();
+    private List<NpcDnd> npcs = new ArrayList<>();
     private int classeDificulade;
 
 

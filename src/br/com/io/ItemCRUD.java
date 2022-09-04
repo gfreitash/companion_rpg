@@ -16,6 +16,8 @@ import java.util.List;
 public class ItemCRUD implements CRUD<Item> {
     private final String localizacaoArquivo;
     private Gson gson;
+    
+    public static final String ITENS = "src/br/com/data/itens.json";
 
     public ItemCRUD(String localizacaoArquivo) {
         this.localizacaoArquivo = localizacaoArquivo;
@@ -43,7 +45,7 @@ public class ItemCRUD implements CRUD<Item> {
         int busca = Collections.binarySearch(itens, new Item(id));
 
         if(busca >= 0) {
-            Item edicao = new Item(id, item.getValor(), item.getNome(), item.getDescricao(), item.getTipo(), item.isMagico());
+            Item edicao = (Item) item.editarObjeto(id);
             itens.remove(busca);
             itens.add(busca, edicao);
 

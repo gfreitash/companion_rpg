@@ -1,26 +1,106 @@
 [
   {
-    "valor": 10.0,
-    "nome": "Espada de prata",
-    "descricao": "Uma espada brilhante de prata. Ideal para caçar monstros",
+    "nome": "1",
+    "descricao": "3",
+    "valor": 2.0,
     "tipo": "ARMA",
     "magico": false,
-    "identificador": "SILVER_SWORD_1"
+    "identificador": "1"
   },
   {
-    "valor": 10.0,
+    "nome": "2",
+    "descricao": "1",
+    "valor": 3.0,
+    "tipo": "ARMA",
+    "magico": false,
+    "identificador": "2"
+  },
+  {
+    "nome": "4",
+    "descricao": "2",
+    "valor": 2.0,
+    "tipo": "ARMA",
+    "magico": false,
+    "identificador": "4"
+  },
+  {
+    "nome": "5",
+    "descricao": "4",
+    "valor": 4.0,
+    "tipo": "ARMA",
+    "magico": false,
+    "identificador": "5"
+  },
+  {
+    "nome": "6",
+    "descricao": "6",
+    "valor": 6.0,
+    "tipo": "ARMA",
+    "magico": false,
+    "identificador": "6"
+  },
+  {
+    "nome": "7",
+    "descricao": "7",
+    "valor": 7.0,
+    "tipo": "ARMA",
+    "magico": false,
+    "identificador": "7"
+  },
+  {
+    "nome": "8",
+    "descricao": "8",
+    "valor": 8.0,
+    "tipo": "ARMA",
+    "magico": false,
+    "identificador": "8"
+  },
+  {
+    "nome": "a",
+    "descricao": "b",
+    "valor": 1.0,
+    "tipo": "ARMA",
+    "magico": false,
+    "identificador": "A"
+  },
+  {
+    "nome": "Aegis",
+    "descricao": "Um escudo divino",
+    "valor": 123.0,
+    "tipo": "ARMADURA",
+    "magico": true,
+    "identificador": "AEGIS"
+  },
+  {
+    "nome": "c",
+    "descricao": "f",
+    "valor": 32232.0,
+    "tipo": "ARMADURA",
+    "magico": true,
+    "identificador": "C"
+  },
+  {
+    "nome": "Espada de Bronze",
+    "descricao": "Uma espada de bronze",
+    "valor": 12.0,
+    "tipo": "ARMA",
+    "magico": false,
+    "identificador": "ESPADA_DE_BRONZE"
+  },
+  {
     "nome": "Espada de prata",
     "descricao": "Uma espada brilhante de prata. Ideal para caçar monstros",
+    "valor": 10.0,
     "tipo": "ARMA",
     "magico": false,
     "identificador": "SILVER_SWORD_2"
   },
   {
-    "valor": 10.0,
-    "nome": "Espada de prata",
-    "descricao": "Uma espada brilhante de prata. Ideal para caçar monstros",
+    "nome": "zzzzzz",
+    "descricao": "Abacate",
+    "valor": 123.0,
     "tipo": "ARMA",
-    "magico": false,
-    "identificador": "SILVER_SWORD_3"
+    "magico": true,
+    "identificador": "ZZZZZZ"
   }
 ]
