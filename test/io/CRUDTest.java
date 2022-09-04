@@ -9,16 +9,16 @@ public class CRUDTest {
 
     @Test
     public void salvar() {
-        Item espada = new Item("SILVER_SWORD_2", 10, "Espada de prata",
-                "Uma espada brilhante de prata. Ideal para caçar monstros",
+        Item espada = new Item("SILVER_SWORD_2", "Espada de prata",
+                "Uma espada brilhante de prata. Ideal para caçar monstros",  10,
                 Item.TIPO.ARMA, false);
 
         System.out.println(itemCRUD.salvar(espada));
     }
     @Test
     public void editar() {
-        Item espada = new Item("SILVER_SWORD_1", 22, "Espada de pratânia",
-                "Uma espada brilhante de pratinha. Ideal",
+        Item espada = new Item("SILVER_SWORD_1", "Espada de pratânia",
+                "Uma espada brilhante de pratinha. Ideal", 22, 
                 Item.TIPO.ARMA, false);
 
         System.out.println(itemCRUD.editar("SILVER_SWORD_2", espada));

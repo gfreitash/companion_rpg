@@ -1,26 +1,18 @@
 [
   {
-    "valor": 10.0,
-    "nome": "Espada de prata",
-    "descricao": "Uma espada brilhante de prata. Ideal para caçar monstros",
+    "nome": "a",
+    "descricao": "b",
+    "valor": 1.0,
     "tipo": "ARMA",
     "magico": false,
-    "identificador": "SILVER_SWORD_1"
+    "identificador": "A"
   },
   {
-    "valor": 10.0,
-    "nome": "Espada de prata",
-    "descricao": "Uma espada brilhante de prata. Ideal para caçar monstros",
-    "tipo": "ARMA",
-    "magico": false,
-    "identificador": "SILVER_SWORD_2"
-  },
-  {
-    "valor": 10.0,
-    "nome": "Espada de prata",
-    "descricao": "Uma espada brilhante de prata. Ideal para caçar monstros",
-    "tipo": "ARMA",
-    "magico": false,
-    "identificador": "SILVER_SWORD_3"
+    "nome": "c",
+    "descricao": "f",
+    "valor": 32232.0,
+    "tipo": "ARMADURA",
+    "magico": true,
+    "identificador": "C"
   }
 ]

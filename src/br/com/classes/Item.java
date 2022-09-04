@@ -13,9 +13,9 @@ import java.util.Objects;
  * @author gfreitash
  */
 public class Item extends Comparavel {
-    private double valor;
     private String nome;
     private String descricao;
+    private double valor;
     private Item.TIPO tipo;
     private boolean magico;
 
@@ -23,10 +23,8 @@ public class Item extends Comparavel {
         ARMA, ARMADURA, MISCELANIA
     }
 
-    public Item(double valor, String nome, String descricao, Item.TIPO tipo, boolean magico) {
-        super.setIdentificador(
-                nome.replace(" ", "_").toUpperCase()
-        );
+    public Item(String nome, String descricao, double valor, Item.TIPO tipo, boolean magico) {
+        super(nome);
         this.valor = valor;
         this.nome = nome;
         this.descricao = descricao;
@@ -34,8 +32,8 @@ public class Item extends Comparavel {
         this.magico = magico;
     }
 
-    public Item(String identificador, double valor, String nome, String descricao, Item.TIPO tipo, boolean magico) {
-        super.setIdentificador(identificador);
+    public Item(String identificador, String nome, String descricao, double valor, Item.TIPO tipo, boolean magico) {
+        super(identificador);
         this.valor = valor;
         this.nome = nome;
         this.descricao = descricao;
@@ -44,7 +42,7 @@ public class Item extends Comparavel {
     }
 
     public Item(String identificador) {
-        super.setIdentificador(identificador);
+        super(identificador);
     }
 
     public double getValor() {

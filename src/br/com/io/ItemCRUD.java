@@ -21,6 +21,11 @@ public class ItemCRUD implements CRUD<Item> {
         this.localizacaoArquivo = localizacaoArquivo;
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
+    
+    public ItemCRUD() {
+        this.localizacaoArquivo = "src/br/com/data/itens.json";
+        gson = new GsonBuilder().setPrettyPrinting().create();
+    }
 
 
     @Override
@@ -43,7 +48,7 @@ public class ItemCRUD implements CRUD<Item> {
         int busca = Collections.binarySearch(itens, new Item(id));
 
         if(busca >= 0) {
-            Item edicao = new Item(id, item.getValor(), item.getNome(), item.getDescricao(), item.getTipo(), item.isMagico());
+            Item edicao = new Item(id, item.getNome(), item.getDescricao(), item.getValor(), item.getTipo(), item.isMagico());
             itens.remove(busca);
             itens.add(busca, edicao);
 
@@ -61,7 +66,7 @@ public class ItemCRUD implements CRUD<Item> {
             return itens.get(busca);
         }
 
-        throw new RuntimeException("Item não encontrado");
+        return null;
     }
 
     @Override
@@ -74,7 +79,7 @@ public class ItemCRUD implements CRUD<Item> {
             return salvarListaJSON(itens);
         }
 
-        throw new RuntimeException("Item não encontrado");
+        return false;
     }
 
     @Override
@@ -86,7 +91,7 @@ public class ItemCRUD implements CRUD<Item> {
         List<Item> itens;
 
         try (FileReader leitor = new FileReader(localizacaoArquivo)) {
-            itens = new ArrayList<Item>(
+            itens = new ArrayList<>(
                     Arrays.asList(gson.fromJson(leitor, Item[].class))
             );
 
