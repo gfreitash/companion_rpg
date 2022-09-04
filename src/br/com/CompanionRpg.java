@@ -12,7 +12,6 @@ import com.google.gson.Gson;
  * @author gfreitash
  */
 public class CompanionRpg {
-
     public static void main(String[] args) {
 
     }

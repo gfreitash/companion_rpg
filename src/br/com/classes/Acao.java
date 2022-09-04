@@ -1,5 +1,7 @@
 package br.com.classes;
 
+import java.util.Objects;
+
 public class Acao {
     private String nome;
     private String descricao;
@@ -23,5 +25,26 @@ public class Acao {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Acao acao = (Acao) o;
+        return nome.equals(acao.nome) && descricao.equals(acao.descricao);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, descricao);
+    }
+
+    @Override
+    public String toString() {
+        return "Acao{" +
+                "nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                '}';
     }
 }

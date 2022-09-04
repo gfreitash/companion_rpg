@@ -63,7 +63,7 @@ public class ItemCRUD implements CRUD<Item> {
             return itens.get(busca);
         }
 
-        throw new RuntimeException("Item não encontrado");
+        return null;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class ItemCRUD implements CRUD<Item> {
             return salvarListaJSON(itens);
         }
 
-        throw new RuntimeException("Item não encontrado");
+        return false;
     }
 
     @Override

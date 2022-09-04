@@ -3222,10 +3222,10 @@ public class JFrame extends javax.swing.JFrame {
         txtAge.setText("");
         
         for(Hero h : heroes){
-            txtStatus.setText(txtStatus.getText() + "Nome   : " + name + "\n");
+            /*txtStatus.setText(txtStatus.getText() + "Nome   : " + name + "\n");
             txtStatus.setText(txtStatus.getText() + "Altura : " + height + "\n");
             txtStatus.setText(txtStatus.getText() + "Peso   : " + weight + "\n");
-            txtStatus.setText(txtStatus.getText() + "Idade  : " + age + "\n\n");
+            txtStatus.setText(txtStatus.getText() + "Idade  : " + age + "\n\n");*/
         }    
         for(Hero h : heroes){
             System.out.println(name + ", ");
