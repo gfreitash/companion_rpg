@@ -14,12 +14,22 @@ public class Hero {
     private double height;
     private double weight;
     private int age;
+    private String background;
+    private int atrbPoints;
+    private Atributtes atrPoints;
 
-    public Hero(String name, double height, double weight, int age) {
+    public Hero(String name, double height, double weight, int age, String background, int atrbPoints, Atributtes atrPoints) {
         this.name = name;
         this.height = height;
         this.weight = weight;
         this.age = age;
+        this.background = background;
+        this.atrbPoints = atrbPoints;
+        this.atrPoints = atrPoints;
+    }
+
+    Hero(String name, double height, double weight, int age, Atributtes pnt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public String getName() {
@@ -52,6 +62,30 @@ public class Hero {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
+    }
+
+    public int getAtrbPoints() {
+        return atrbPoints;
+    }
+
+    public void setAtrbPoints(int atrbPoints) {
+        this.atrbPoints = atrbPoints;
+    }
+
+    public Atributtes getAtrPoints() {
+        return atrPoints;
+    }
+
+    public void setAtrPoints(Atributtes atrPoints) {
+        this.atrPoints = atrPoints;
     }
 
     
