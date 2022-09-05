@@ -5,6 +5,7 @@
 package br.com.ui;
 
 import br.com.classes.Mapa;
+import br.com.interfaces.FuncaoActionPerformed;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -19,14 +20,14 @@ import javax.swing.ImageIcon;
 public class DisplayMapa extends javax.swing.JPanel {
     
     private Mapa mapa;
+    private FuncaoActionPerformed removerAcao;
     
     public DisplayMapa(Mapa mapa) {
         
         this.mapa = mapa;
         
         initComponents();
-        
-        custominitComponents();
+        customInitComponents();
     }
 
     /**
@@ -41,8 +42,21 @@ public class DisplayMapa extends javax.swing.JPanel {
         mapaNomeLabel = new javax.swing.JLabel();
         mapaNome = new javax.swing.JLabel();
         mapaDisplay = new javax.swing.JLabel();
+        mapaRemoverBotao = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+
+        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         mapaNomeLabel.setText("Nome: ");
+
+        mapaDisplay.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        mapaRemoverBotao.setText("Remover");
+        mapaRemoverBotao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mapaRemoverBotaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -51,11 +65,15 @@ public class DisplayMapa extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mapaDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mapaDisplay)
+                    .addComponent(jSeparator1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(mapaRemoverBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(mapaNomeLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mapaNome, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)))
+                        .addComponent(mapaNome, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -66,30 +84,44 @@ public class DisplayMapa extends javax.swing.JPanel {
                     .addComponent(mapaNomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(mapaNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mapaDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mapaDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mapaRemoverBotao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mapaRemoverBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mapaRemoverBotaoActionPerformed
+        this.removerAcao.actionPerformed();
+    }//GEN-LAST:event_mapaRemoverBotaoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel mapaDisplay;
     private javax.swing.JLabel mapaNome;
     private javax.swing.JLabel mapaNomeLabel;
+    private javax.swing.JButton mapaRemoverBotao;
     // End of variables declaration//GEN-END:variables
 
-    private void custominitComponents() {
+    private void customInitComponents() {
         mapaNome.setText(mapa.getNome());
         
         BufferedImage imagem = null;
-        
         try{
-            imagem = ImageIO.read(new File (mapa.getEndereço()));                    
-            Image mapaImagem = imagem.getScaledInstance(260, 260, Image.SCALE_SMOOTH);
+            imagem = ImageIO.read(new File (mapa.getEndereço()));
+            System.out.println(mapaDisplay.getSize().toString());
+            Image mapaImagem = imagem.getScaledInstance(342, 266, Image.SCALE_SMOOTH);
             mapaDisplay.setIcon(new ImageIcon(mapaImagem));
         }catch(IOException e){
            e.printStackTrace();
         }
                 
+    }
+    
+    public void setRemoverAcao(FuncaoActionPerformed removerAcao) {
+        this.removerAcao = removerAcao;
     }
 }

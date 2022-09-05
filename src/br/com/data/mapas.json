@@ -1,12 +1,12 @@
 [
   {
-    "endereço": "C:\\Users\\Thiago\\Desktop\\mapateste.jpg",
-    "nome": "Abobora",
-    "identificador": "..."
+    "endereço": "src/br/com/data/mapas/Screenshot_20220902_191159.png",
+    "nome": "Screenshot_20220902_191159.png",
+    "identificador": "SCREENSHOT_20220902_191159.PNG"
   },
   {
-    "endereço": "C:\\Users\\Thiago\\Pictures\\Saved Pictures\\Haru_Okumura.jpg",
-    "nome": "Haru_Okumura.jpg",
-    "identificador": "HARU_OKUMURA.JPG"
+    "endereço": "src/br/com/data/mapas/Tautologias_teis.png",
+    "nome": "Tautologias_teis.png",
+    "identificador": "TAUTOLOGIAS_TEIS.PNG"
   }
 ]

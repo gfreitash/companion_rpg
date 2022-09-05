@@ -14,11 +14,16 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.List;
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 import br.com.io.MapaCRUD;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
@@ -929,6 +934,7 @@ public class Janela extends javax.swing.JFrame {
                 final Mapa mapa = mapas.get(cont);
                 
                 DisplayMapa dm = new DisplayMapa(mapa);
+                dm.setRemoverAcao(()->{this.removerMapa(mapa);});
                 gbc.gridx = j;
                 gbc.gridy = i;
                 listaMapas.add(dm, gbc);
@@ -944,8 +950,21 @@ public class Janela extends javax.swing.JFrame {
         final File map = chooser.getSelectedFile();
         String mapname = map.getAbsolutePath();
         
-        MapaCRUD mc = new MapaCRUD(MapaCRUD.MAPAS);
-        mc.salvar(new Mapa(mapname, map.getName()));
+        try {
+            String out = "src/br/com/data/mapas/" + map.getName();
+            Files.copy(Path.of(mapname), Path.of(out), StandardCopyOption.REPLACE_EXISTING);
+            
+            MapaCRUD mc = new MapaCRUD(MapaCRUD.MAPAS);
+            if(!mc.salvar(new Mapa(out, map.getName()))) {
+                throw new IOException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar a imagem", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        this.mapMenuMouseClicked(null);
     }//GEN-LAST:event_addMapaActionPerformed
 
     /**
@@ -1116,6 +1135,21 @@ public class Janela extends javax.swing.JFrame {
         if(itemCRUD.deletar(Comparavel.transformarIdentificador(item.getNome()))) {
             JOptionPane.showMessageDialog(null, "O item foi deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             this.mostrarItensMenuItemActionPerformed(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "Não foi possível deletar o item.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void removerMapa(Mapa mapa) {
+        int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o mapa \"" + mapa.getNome() + "\"?", "",
+                JOptionPane.YES_NO_OPTION);
+        
+        if(resposta != 0) {return;}
+        
+        MapaCRUD mc = new MapaCRUD(MapaCRUD.MAPAS);
+        if(mc.deletar(Comparavel.transformarIdentificador(mapa.getNome()))) {
+            JOptionPane.showMessageDialog(null, "O mapa foi deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            this.mapMenuMouseClicked(null);
         } else {
             JOptionPane.showMessageDialog(null, "Não foi possível deletar o item.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
