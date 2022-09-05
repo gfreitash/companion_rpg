@@ -1,7 +1,12 @@
 [
   {
-    "nome": "ROgeiro",
-    "endereco": "src/alskdjflkjas/imagem.png",
-    "identificador": "ROGEIRO"
+    "endereço": "C:\\Users\\Thiago\\Desktop\\mapateste.jpg",
+    "nome": "Abobora",
+    "identificador": "..."
+  },
+  {
+    "endereço": "C:\\Users\\Thiago\\Pictures\\Saved Pictures\\Haru_Okumura.jpg",
+    "nome": "Haru_Okumura.jpg",
+    "identificador": "HARU_OKUMURA.JPG"
   }
 ]
