@@ -5,6 +5,7 @@
 package br.com.ui;
 
 import br.com.classes.Item;
+import br.com.classes.Mapa;
 import br.com.interfaces.Comparavel;
 import br.com.io.ItemCRUD;
 import java.awt.CardLayout;
@@ -16,6 +17,9 @@ import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+import br.com.io.MapaCRUD;
+import java.io.File;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -100,6 +104,10 @@ public class Janela extends javax.swing.JFrame {
         rollDiceButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         rollDiceResultadoTextArea = new javax.swing.JTextArea();
+        mapaPanel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listaMapas = new javax.swing.JPanel();
+        addMapa = new javax.swing.JButton();
         barraMenu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         itensMenu = new javax.swing.JMenu();
@@ -109,6 +117,7 @@ public class Janela extends javax.swing.JFrame {
         criarNpcMenuItem = new javax.swing.JMenuItem();
         mostrarNpcsMenuItem = new javax.swing.JMenuItem();
         rollDiceMenu = new javax.swing.JMenu();
+        mapMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -602,6 +611,51 @@ public class Janela extends javax.swing.JFrame {
 
         painelPrincipal.add(rollDicePanel, "rollDiceCard");
 
+        javax.swing.GroupLayout listaMapasLayout = new javax.swing.GroupLayout(listaMapas);
+        listaMapas.setLayout(listaMapasLayout);
+        listaMapasLayout.setHorizontalGroup(
+            listaMapasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 869, Short.MAX_VALUE)
+        );
+        listaMapasLayout.setVerticalGroup(
+            listaMapasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 378, Short.MAX_VALUE)
+        );
+
+        jScrollPane3.setViewportView(listaMapas);
+
+        addMapa.setText("Adicionar Mapa");
+        addMapa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMapaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mapaPanelLayout = new javax.swing.GroupLayout(mapaPanel);
+        mapaPanel.setLayout(mapaPanelLayout);
+        mapaPanelLayout.setHorizontalGroup(
+            mapaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mapaPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(mapaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(mapaPanelLayout.createSequentialGroup()
+                        .addComponent(addMapa)
+                        .addGap(0, 757, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        mapaPanelLayout.setVerticalGroup(
+            mapaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mapaPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        painelPrincipal.add(mapaPanel, "mapCard");
+
         jMenu1.setText("File");
         barraMenu.add(jMenu1);
 
@@ -647,6 +701,14 @@ public class Janela extends javax.swing.JFrame {
             }
         });
         barraMenu.add(rollDiceMenu);
+
+        mapMenu.setText("Mapa");
+        mapMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mapMenuMouseClicked(evt);
+            }
+        });
+        barraMenu.add(mapMenu);
 
         setJMenuBar(barraMenu);
 
@@ -849,6 +911,43 @@ public class Janela extends javax.swing.JFrame {
         rollDiceResultadoTextArea.setText("Soma dos dados: " + resultado + "\n\n" + somadosdados);
     }//GEN-LAST:event_rollDiceButtonActionPerformed
 
+    private void mapMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapMenuMouseClicked
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
+        cl.show(painelPrincipal, "carregandoCard");
+        
+        listaMapas.setLayout(new GridBagLayout());
+        listaMapas.removeAll();
+        GridBagConstraints gbc = new GridBagConstraints(); 
+        gbc.insets = new Insets(5,5,5,5);
+        
+        MapaCRUD mc = new MapaCRUD(MapaCRUD.MAPAS);
+        
+        List <Mapa> mapas = mc.obterTodos();
+        
+        for(int i = 0, cont = 0; cont < mapas.size(); i++){
+            for(int j = 0; j < 2 && cont < mapas.size(); j++, cont++){
+                final Mapa mapa = mapas.get(cont);
+                
+                DisplayMapa dm = new DisplayMapa(mapa);
+                gbc.gridx = j;
+                gbc.gridy = i;
+                listaMapas.add(dm, gbc);
+            }            
+        }
+        
+        cl.show(painelPrincipal, "mapCard");
+    }//GEN-LAST:event_mapMenuMouseClicked
+
+    private void addMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMapaActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        final File map = chooser.getSelectedFile();
+        String mapname = map.getAbsolutePath();
+        
+        MapaCRUD mc = new MapaCRUD(MapaCRUD.MAPAS);
+        mc.salvar(new Mapa(mapname, map.getName()));
+    }//GEN-LAST:event_addMapaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -885,6 +984,7 @@ public class Janela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addMapa;
     private javax.swing.JMenuBar barraMenu;
     private javax.swing.JLabel carregandoLabel;
     private javax.swing.JPanel carregandoPanel;
@@ -926,6 +1026,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextArea jTextArea1;
@@ -935,6 +1036,9 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JPanel listaMapas;
+    private javax.swing.JMenu mapMenu;
+    private javax.swing.JPanel mapaPanel;
     private javax.swing.JPanel mostrarItensListaItensPanel;
     private javax.swing.JScrollPane mostrarItensListaItensScrollpane;
     private javax.swing.JMenuItem mostrarItensMenuItem;
