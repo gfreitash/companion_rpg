@@ -18,12 +18,20 @@ public class NpcDnd extends Comparavel{
     private String nome;
     private double classeDificuldade;
     private String alinhamento;
+    
+    public static final String LG = "Lawful Good";
+    public static final String LN = "Lawful Neutral";
+    public static final String LE = "Lawful Evil";
+    public static final String NG = "Neutral Good";
+    public static final String TG = "True Neutral";
+    public static final String NE = "Neutral Evil";
+    public static final String CG = "Chaotic Good";
+    public static final String CN = "Chaotic Neutral";
+    public static final String CE = "Chaotic Evil";
 
     private int classeArmadura;
     private double hitPoints;
-    private double velocidadeTerrestre;
-    private double velocidadeAquatica;
-    private double velocidadeAerea;
+    private double velocidade;
 
     private int forca;
     private int destreza;
@@ -36,16 +44,14 @@ public class NpcDnd extends Comparavel{
 
     private final List<Acao> acoes = new ArrayList<>();
 
-    public NpcDnd(String nome, double classeDificuldade, String alinhamento, int classeArmadura, double hitPoints, double velocidadeTerrestre, double velocidadeAquatica, double velocidadeAerea, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int carisma) {
+    public NpcDnd(String nome, double classeDificuldade, String alinhamento, int classeArmadura, double hitPoints, double velocidade, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int carisma) {
         super(nome);
         this.nome = nome;
         this.classeDificuldade = classeDificuldade;
         this.alinhamento = alinhamento;
         this.classeArmadura = classeArmadura;
         this.hitPoints = hitPoints;
-        this.velocidadeTerrestre = velocidadeTerrestre;
-        this.velocidadeAquatica = velocidadeAquatica;
-        this.velocidadeAerea = velocidadeAerea;
+        this.velocidade = velocidade;
         this.forca = forca;
         this.destreza = destreza;
         this.constituicao = constituicao;
@@ -54,16 +60,14 @@ public class NpcDnd extends Comparavel{
         this.carisma = carisma;
     }
 
-    public NpcDnd(String identificador, String nome, double classeDificuldade, String alinhamento, int classeArmadura, double hitPoints, double velocidadeTerrestre, double velocidadeAquatica, double velocidadeAerea, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int carisma) {
+    public NpcDnd(String identificador, String nome, double classeDificuldade, String alinhamento, int classeArmadura, double hitPoints, double velocidade, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int carisma) {
         super(identificador);
         this.nome = nome;
         this.classeDificuldade = classeDificuldade;
         this.alinhamento = alinhamento;
         this.classeArmadura = classeArmadura;
         this.hitPoints = hitPoints;
-        this.velocidadeTerrestre = velocidadeTerrestre;
-        this.velocidadeAquatica = velocidadeAquatica;
-        this.velocidadeAerea = velocidadeAerea;
+        this.velocidade = velocidade;
         this.forca = forca;
         this.destreza = destreza;
         this.constituicao = constituicao;
@@ -84,7 +88,7 @@ public class NpcDnd extends Comparavel{
     @Override
     public Comparavel editarObjeto(String id) {
         return new NpcDnd(id, this.nome, this.classeDificuldade, this.alinhamento, this.classeArmadura,
-                this.hitPoints, this.velocidadeTerrestre, this.velocidadeAquatica, this.velocidadeAerea,
+                this.hitPoints, this.velocidade,
                 this.forca, this.destreza, this.constituicao, this.inteligencia, this.sabedoria, this.carisma);
     }
 
@@ -96,9 +100,7 @@ public class NpcDnd extends Comparavel{
                 ", alinhamento='" + alinhamento + '\'' +
                 ", classeArmadura=" + classeArmadura +
                 ", hitPoints=" + hitPoints +
-                ", velocidadeTerrestre=" + velocidadeTerrestre +
-                ", velocidadeAquatica=" + velocidadeAquatica +
-                ", velocidadeAerea=" + velocidadeAerea +
+                ", velocidadeTerrestre=" + velocidade +
                 ", forca=" + forca +
                 ", destreza=" + destreza +
                 ", constituicao=" + constituicao +
@@ -117,12 +119,12 @@ public class NpcDnd extends Comparavel{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NpcDnd npcDnd = (NpcDnd) o;
-        return Double.compare(npcDnd.classeDificuldade, classeDificuldade) == 0 && Double.compare(npcDnd.velocidadeTerrestre, velocidadeTerrestre) == 0 && Double.compare(npcDnd.velocidadeAquatica, velocidadeAquatica) == 0 && Double.compare(npcDnd.velocidadeAerea, velocidadeAerea) == 0 && forca == npcDnd.forca && destreza == npcDnd.destreza && constituicao == npcDnd.constituicao && inteligencia == npcDnd.inteligencia && sabedoria == npcDnd.sabedoria && carisma == npcDnd.carisma && nome.equals(npcDnd.nome) && Objects.equals(alinhamento, npcDnd.alinhamento) && pericias.equals(npcDnd.pericias) && salvamentos.equals(npcDnd.salvamentos) && acoes.equals(npcDnd.acoes);
+        return Double.compare(npcDnd.classeDificuldade, classeDificuldade) == 0 && Double.compare(npcDnd.velocidade, velocidade) == 0 && forca == npcDnd.forca && destreza == npcDnd.destreza && constituicao == npcDnd.constituicao && inteligencia == npcDnd.inteligencia && sabedoria == npcDnd.sabedoria && carisma == npcDnd.carisma && nome.equals(npcDnd.nome) && Objects.equals(alinhamento, npcDnd.alinhamento) && pericias.equals(npcDnd.pericias) && salvamentos.equals(npcDnd.salvamentos) && acoes.equals(npcDnd.acoes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, classeDificuldade, alinhamento, velocidadeTerrestre, velocidadeAquatica, velocidadeAerea, forca, destreza, constituicao, inteligencia, sabedoria, carisma, pericias, salvamentos, acoes);
+        return Objects.hash(nome, classeDificuldade, alinhamento, velocidade, forca, destreza, constituicao, inteligencia, sabedoria, carisma, pericias, salvamentos, acoes);
     }
 
     public String getNome() {
@@ -166,27 +168,11 @@ public class NpcDnd extends Comparavel{
     }
 
     public double getVelocidadeTerrestre() {
-        return velocidadeTerrestre;
+        return velocidade;
     }
 
     public void setVelocidadeTerrestre(double velocidadeTerrestre) {
-        this.velocidadeTerrestre = velocidadeTerrestre;
-    }
-
-    public double getVelocidadeAquatica() {
-        return velocidadeAquatica;
-    }
-
-    public void setVelocidadeAquatica(double velocidadeAquatica) {
-        this.velocidadeAquatica = velocidadeAquatica;
-    }
-
-    public double getVelocidadeAerea() {
-        return velocidadeAerea;
-    }
-
-    public void setVelocidadeAerea(double velocidadeAerea) {
-        this.velocidadeAerea = velocidadeAerea;
+        this.velocidade = velocidadeTerrestre;
     }
 
     public int getForca() {

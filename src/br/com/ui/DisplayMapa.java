@@ -112,7 +112,6 @@ public class DisplayMapa extends javax.swing.JPanel {
         BufferedImage imagem = null;
         try{
             imagem = ImageIO.read(new File (mapa.getEndereço()));
-            System.out.println(mapaDisplay.getSize().toString());
             Image mapaImagem = imagem.getScaledInstance(342, 266, Image.SCALE_SMOOTH);
             mapaDisplay.setIcon(new ImageIcon(mapaImagem));
         }catch(IOException e){

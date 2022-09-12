@@ -1,5 +1,6 @@
 package br.com.interfaces;
 
+import java.util.List;
 import java.util.Locale;
 
 public abstract class Comparavel implements Comparable<Comparavel> {
@@ -36,5 +37,24 @@ public abstract class Comparavel implements Comparable<Comparavel> {
     
     public static String transformarIdentificador(String identificador) {
         return identificador.replace(" ", "_").toUpperCase(Locale.US);
+    }
+
+    public static <T extends Comparavel> int buscaBinaria(List<T> lista, String identificador) {
+        int inicio = 0;
+        int fim = lista.size() - 1;
+        int meio;
+        int comparacao;
+        while (inicio <= fim) {
+            meio = (inicio + fim) / 2;
+            comparacao = lista.get(meio).getIdentificador().compareTo(identificador);
+            if (comparacao == 0) {
+                return meio;
+            } else if (comparacao < 0) {
+                inicio = meio + 1;
+            } else {
+                fim = meio - 1;
+            }
+        }
+        return -1;
     }
 }

@@ -7,7 +7,9 @@ package br.com.ui;
 import br.com.classes.Item;
 import br.com.classes.Mapa;
 import br.com.interfaces.Comparavel;
-import br.com.io.ItemCRUD;
+import br.com.io.CrudGenerico;
+import com.google.gson.reflect.TypeToken;
+
 import java.awt.CardLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -16,14 +18,11 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import java.util.Map;
 import java.util.TreeMap;
-import br.com.io.MapaCRUD;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
@@ -784,7 +783,7 @@ public class Janela extends javax.swing.JFrame {
         }
         
         Item item = new Item(nome, descricao, valor, Item.TIPO.valueOf(tipo), isMagico);
-        ItemCRUD itemCrud = new ItemCRUD(ItemCRUD.ITENS);
+        CrudGenerico<Item> itemCrud = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.ITENS);
         if(itemCrud.salvar(item)) {
             JOptionPane.showMessageDialog(null, "O item foi salvo com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             criarItemNomeTextField.setText("");
@@ -828,7 +827,7 @@ public class Janela extends javax.swing.JFrame {
         }
         
         Item item = new Item(nome, descricao, valor, Item.TIPO.valueOf(tipo), isMagico);
-        ItemCRUD itemCrud = new ItemCRUD(ItemCRUD.ITENS);
+        CrudGenerico<Item> itemCrud = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.ITENS);
         if(itemCrud.editar(editarItemNomeOriginal.getText(),item)) {
             JOptionPane.showMessageDialog(null, "O item foi salvo com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             this.mostrarItensMenuItemActionPerformed(null);
@@ -875,32 +874,32 @@ public class Janela extends javax.swing.JFrame {
         int QuantD20 = (Integer) spinnerD20.getValue();
         
         for(int i = 0; i < QuantD4; i++){
-            Lançamentos.put((i + 1) + ":D4",Math.ceil(Math.random()*4));
+            Lançamentos.put("D4 #" +(i + 1) +": ",Math.ceil(Math.random()*4));
                
         }
         
         for(int i = 0; i < QuantD6; i++){
-            Lançamentos.put((i + 1) + ":D6",Math.ceil(Math.random()*6));
+            Lançamentos.put("D6 #" +(i + 1) +": ",Math.ceil(Math.random()*6));
             
         }
         
         for(int i = 0; i < QuantD8; i++){
-            Lançamentos.put((i + 1) + ":D8",Math.ceil(Math.random()*8));
+            Lançamentos.put("D8 #" +(i + 1) +": ",Math.ceil(Math.random()*8));
             
         }
         
         for(int i = 0; i < QuantD10; i++){
-            Lançamentos.put((i + 1) + ":D10",Math.ceil(Math.random()*10));
+            Lançamentos.put("D10 #" +(i + 1) +": ",Math.ceil(Math.random()*10));
             
         }
         
         for(int i = 0; i < QuantD12; i++){
-            Lançamentos.put((i + 1) + ":D12",Math.ceil(Math.random()*12));
+            Lançamentos.put("D12 #" +(i + 1) +": ",Math.ceil(Math.random()*12));
             
         }
         
         for(int i = 0; i < QuantD20; i++){
-            Lançamentos.put((i + 1) + ":D20",Math.ceil(Math.random()*20));
+            Lançamentos.put("D20 #" +(i + 1) +": ",Math.ceil(Math.random()*20));
             
         } 
         
@@ -908,7 +907,7 @@ public class Janela extends javax.swing.JFrame {
         String somadosdados = "";
         
         for(Map.Entry<String,Double> entrada: Lançamentos.entrySet()){
-            somadosdados += entrada.getKey() + ": " + entrada.getValue().intValue() + "\t";
+            somadosdados += entrada.getKey() + entrada.getValue().intValue() + "\t";
             resultado += entrada.getValue();
             
         }
@@ -925,7 +924,7 @@ public class Janela extends javax.swing.JFrame {
         GridBagConstraints gbc = new GridBagConstraints(); 
         gbc.insets = new Insets(5,5,5,5);
         
-        MapaCRUD mc = new MapaCRUD(MapaCRUD.MAPAS);
+        CrudGenerico<Mapa> mc = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.MAPAS);
         
         List <Mapa> mapas = mc.obterTodos();
         
@@ -954,7 +953,7 @@ public class Janela extends javax.swing.JFrame {
             String out = "src/br/com/data/mapas/" + map.getName();
             Files.copy(Path.of(mapname), Path.of(out), StandardCopyOption.REPLACE_EXISTING);
             
-            MapaCRUD mc = new MapaCRUD(MapaCRUD.MAPAS);
+            CrudGenerico<Mapa> mc = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.MAPAS);
             if(!mc.salvar(new Mapa(out, map.getName()))) {
                 throw new IOException();
             }
@@ -1093,7 +1092,7 @@ public class Janela extends javax.swing.JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         
-        ItemCRUD itemCRUD = new ItemCRUD(ItemCRUD.ITENS);
+        CrudGenerico<Item> itemCRUD = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.ITENS);
         List<Item> itens = itemCRUD.obterTodos();
         
         for(int i = 0, count = 0; count < itens.size(); i++) {
@@ -1131,7 +1130,8 @@ public class Janela extends javax.swing.JFrame {
         
         if(resposta != 0) {return;}
         
-        ItemCRUD itemCRUD = new ItemCRUD(ItemCRUD.ITENS);
+        CrudGenerico<Item> itemCRUD = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.ITENS);
+
         if(itemCRUD.deletar(Comparavel.transformarIdentificador(item.getNome()))) {
             JOptionPane.showMessageDialog(null, "O item foi deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             this.mostrarItensMenuItemActionPerformed(null);
@@ -1146,7 +1146,8 @@ public class Janela extends javax.swing.JFrame {
         
         if(resposta != 0) {return;}
         
-        MapaCRUD mc = new MapaCRUD(MapaCRUD.MAPAS);
+        CrudGenerico<Item> mc = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.MAPAS);
+
         if(mc.deletar(Comparavel.transformarIdentificador(mapa.getNome()))) {
             JOptionPane.showMessageDialog(null, "O mapa foi deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             this.mapMenuMouseClicked(null);

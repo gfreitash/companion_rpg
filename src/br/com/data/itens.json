@@ -96,6 +96,14 @@
     "identificador": "SILVER_SWORD_2"
   },
   {
+    "nome": "Espada de patilda",
+    "descricao": "Uma espada brilhante de prata. Ideal para caçar monstros",
+    "valor": 10.0,
+    "tipo": "ARMA",
+    "magico": false,
+    "identificador": "SILVER_SWORD_48"
+  },
+  {
     "nome": "zzzzzz",
     "descricao": "Abacate",
     "valor": 123.0,
