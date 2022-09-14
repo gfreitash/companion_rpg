@@ -14,7 +14,7 @@ public abstract class Comparavel implements Comparable<Comparavel> {
         return identificador;
     }
 
-    protected void setIdentificador(String identificador) {
+    private void setIdentificador(String identificador) {
         this.identificador = Comparavel.transformarIdentificador(identificador);
     }
     
@@ -46,6 +46,8 @@ public abstract class Comparavel implements Comparable<Comparavel> {
         int comparacao;
         while (inicio <= fim) {
             meio = (inicio + fim) / 2;
+            System.out.println("id: " + identificador);
+            System.out.println("idAtual:" + lista.get(meio).getIdentificador());
             comparacao = lista.get(meio).getIdentificador().compareTo(identificador);
             if (comparacao == 0) {
                 return meio;

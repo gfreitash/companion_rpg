@@ -4,10 +4,13 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="barraMenu">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="inicioMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="text" type="java.lang.String" value="In&#xed;cio"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="inicioMenuMousePressed"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="itensMenu">
           <Properties>
@@ -41,6 +44,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Criar NPC"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="criarNpcMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mostrarNpcsMenuItem">
               <Properties>
@@ -57,7 +63,7 @@
             <Property name="text" type="java.lang.String" value="Rolar dados"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rollDiceMenuMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rollDiceMenuMousePressed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mapMenu">
@@ -65,7 +71,7 @@
             <Property name="text" type="java.lang.String" value="Mapa"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mapMenuMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mapMenuMousePressed"/>
           </Events>
         </Menu>
       </SubComponents>
@@ -119,25 +125,37 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="homePanel">
+        <Container class="javax.swing.JPanel" name="inicioPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card4"/>
+              <CardConstraints cardName="inicioCard"/>
             </Constraint>
           </Constraints>
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="883" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="439" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="boasVindasLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="DejaVu Serif" size="36" style="0"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Bem-vindo ao Companion de RPG"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                  <BorderConstraints direction="North"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="capaLabel">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                  <BorderConstraints direction="Center"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="criarItemPanel">
           <Constraints>
@@ -192,7 +210,7 @@
                                           </Group>
                                           <Component id="criarItemDescricaoLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="142" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="168" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -236,7 +254,7 @@
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="criarItemDescricaoLabel" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="criarItemDescricaoScroolPane" pref="175" max="32767" attributes="0"/>
+                      <Component id="criarItemDescricaoScroolPane" pref="291" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -351,44 +369,6 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="criarNpcPanel">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="criarNpcCard"/>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="300" max="-2" attributes="0"/>
-                      <EmptySpace pref="577" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="42" max="-2" attributes="0"/>
-                      <EmptySpace pref="391" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel1">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Noto Serif Medium" size="36" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Criar NPC"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
         <Container class="javax.swing.JPanel" name="mostrarItensPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
@@ -413,7 +393,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="mostrarItensListaItensScrollpane" max="32767" attributes="0"/>
+                              <Component id="mostrarItensListaScrollpane" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -428,7 +408,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="mostrarItensTituloSeparator" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="mostrarItensListaItensScrollpane" max="32767" attributes="0"/>
+                      <Component id="mostrarItensListaScrollpane" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -445,21 +425,21 @@
             </Component>
             <Component class="javax.swing.JSeparator" name="mostrarItensTituloSeparator">
             </Component>
-            <Container class="javax.swing.JScrollPane" name="mostrarItensListaItensScrollpane">
+            <Container class="javax.swing.JScrollPane" name="mostrarItensListaScrollpane">
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="mostrarItensListaItensPanel">
+                <Container class="javax.swing.JPanel" name="mostrarItensListaPanel">
 
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="863" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="900" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="361" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="476" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -480,7 +460,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="carregandoLabel" pref="871" max="32767" attributes="0"/>
+                      <Component id="carregandoLabel" pref="909" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -489,7 +469,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="carregandoLabel" pref="427" max="32767" attributes="0"/>
+                      <Component id="carregandoLabel" pref="543" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -525,7 +505,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="editarItemTituloLabel" min="-2" pref="300" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="editarItemNomeOriginal" min="-2" pref="56" max="-2" attributes="0"/>
+                                      <Component id="editarItemId" min="-2" pref="56" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="editarItemTituloSeparator" alignment="1" max="32767" attributes="0"/>
@@ -562,7 +542,7 @@
                                           </Group>
                                           <Component id="editarItemDescricaoLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="142" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="168" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -577,7 +557,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="editarItemTituloLabel" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="editarItemNomeOriginal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editarItemId" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -609,7 +589,7 @@
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="editarItemDescricaoLabel" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="editarItemDescricaoScroolpane" pref="175" max="32767" attributes="0"/>
+                      <Component id="editarItemDescricaoScroolpane" pref="291" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="editarItemRodapeSeparator" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -722,7 +702,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="editarItemNomeOriginal">
+            <Component class="javax.swing.JLabel" name="editarItemId">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel2"/>
                 <Property name="enabled" type="boolean" value="false"/>
@@ -772,7 +752,7 @@
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="655" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="65" max="32767" attributes="0"/>
+                      <EmptySpace pref="103" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -804,7 +784,7 @@
                           <Component id="spinnerD12" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="spinnerD20" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="41" max="32767" attributes="0"/>
+                      <EmptySpace pref="135" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="rollDiceButton" max="32767" attributes="0"/>
                           <Component id="jScrollPane2" max="32767" attributes="0"/>
@@ -927,7 +907,7 @@
                           <Component id="jScrollPane3" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="addMapa" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="757" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -940,7 +920,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="addMapa" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" pref="380" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -956,12 +936,12 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="869" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="906" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="378" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="493" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -975,6 +955,1010 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMapaActionPerformed"/>
               </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="criarNpcPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="criarNpcCard"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="criarNpcSalvarBotao" min="-2" pref="88" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="criarNpcTituloLabel" min="-2" pref="300" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="criarNpcMainPanel" max="32767" attributes="0"/>
+                          <Component id="criarNpcTituloSeparator" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="criarNpcTituloLabel" min="-2" pref="42" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="criarNpcTituloSeparator" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="criarNpcMainPanel" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="criarNpcSalvarBotao" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="criarNpcTituloLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Noto Serif Medium" size="36" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Criar NPC"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="criarNpcTituloSeparator">
+            </Component>
+            <Container class="javax.swing.JPanel" name="criarNpcMainPanel">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="npcNomeLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="npcNomeTextField" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="npcHitpointsLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="npcHitpointsTextField" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
+                                          <Component id="npcSalvamentosLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="npcAdicionarSalvamentosBotao" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="48" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="npcAlinhamentoLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="npcAlinhamentoComboBox" min="-2" pref="145" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="npcClasseDificuldadeLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="npcClasseDificuldadeTextField" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="npcVelocidadeLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="npcVelocidadeTextField" min="-2" pref="60" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="npcAcoesLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="npcAdicionarAcoesBotao" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="npcAcoesScroolpane" min="-2" pref="266" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="npcClasseArmaduraLabel" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="npcClasseArmaduraTextField" min="-2" pref="60" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="npcForcaLabel" min="-2" pref="75" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                                          <Component id="npcForcaSpinner" min="-2" pref="50" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="npcConstituicaoLabel" min="-2" pref="75" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                                          <Component id="npcConstituicaoSpinner" min="-2" pref="50" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="npcSabedoriaLabel" min="-2" pref="75" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                                          <Component id="npcSabedoriaSpinner" min="-2" pref="50" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="npcDestrezaLabel" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                                                      <Component id="npcInteligenciaLabel" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                                                      <Component id="npcCarismaLabel" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="npcCarismaSpinner" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="npcInteligenciaSpinner" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="npcDestrezaSpinner" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="npcSalvamentosScroolpane" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="npcPericiasLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="npcAdicionarPericiasBotao" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="npcPericiasScroolpane" min="-2" pref="160" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="npcNomeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="npcNomeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="npcVelocidadeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="npcVelocidadeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="npcClasseDificuldadeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="npcClasseDificuldadeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="npcAlinhamentoComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="npcAlinhamentoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="npcHitpointsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcHitpointsTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcClasseArmaduraTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcClasseArmaduraLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="npcSalvamentosLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcPericiasLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcAdicionarSalvamentosBotao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcAdicionarPericiasBotao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="npcPericiasScroolpane" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="npcDestrezaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="npcDestrezaSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="npcForcaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="npcForcaSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="npcConstituicaoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcConstituicaoSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcInteligenciaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcInteligenciaSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="npcSabedoriaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcSabedoriaSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcCarismaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcCarismaSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="npcAcoesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="npcAdicionarAcoesBotao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="npcAcoesScroolpane" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="npcSalvamentosScroolpane" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="npcNomeLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nome:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="npcNomeTextField">
+                </Component>
+                <Component class="javax.swing.JTextField" name="npcVelocidadeTextField">
+                </Component>
+                <Component class="javax.swing.JLabel" name="npcVelocidadeLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Velocidade:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="npcClasseDificuldadeTextField">
+                </Component>
+                <Component class="javax.swing.JLabel" name="npcClasseDificuldadeLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CD:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="npcAlinhamentoComboBox">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="npcAlinhamentoLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Alinhamento:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="npcHitpointsLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Hit Points:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="npcHitpointsTextField">
+                </Component>
+                <Component class="javax.swing.JTextField" name="npcClasseArmaduraTextField">
+                </Component>
+                <Component class="javax.swing.JLabel" name="npcClasseArmaduraLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CA:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="npcForcaLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="For&#xe7;a:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="npcForcaSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="npcConstituicaoSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="npcConstituicaoLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Constitui&#xe7;&#xe3;o:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="npcInteligenciaSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="npcInteligenciaLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Intelig&#xea;ncia:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="npcSabedoriaSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="npcSabedoriaLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Sabedoria:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="npcCarismaSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="npcCarismaLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Carisma:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="npcAcoesLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="A&#xe7;&#xf5;es:"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="npcAcoesScroolpane">
+                  <Properties>
+                    <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+                  </Properties>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="npcAcoesPanel">
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+                        <Property name="axis" type="int" value="1"/>
+                      </Layout>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JButton" name="npcAdicionarAcoesBotao">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="npcAdicionarAcoesBotaoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="npcSalvamentosScroolpane">
+                  <Properties>
+                    <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+                  </Properties>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="npcSalvamentosPanel">
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+                        <Property name="axis" type="int" value="1"/>
+                      </Layout>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="npcSalvamentosLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Salvamentos:"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="npcPericiasScroolpane">
+                  <Properties>
+                    <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+                  </Properties>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="npcPericiasPanel">
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+                        <Property name="axis" type="int" value="1"/>
+                      </Layout>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="npcPericiasLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Per&#xed;cias:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="npcAdicionarSalvamentosBotao">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="npcAdicionarSalvamentosBotaoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="npcAdicionarPericiasBotao">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="npcAdicionarPericiasBotaoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="npcDestrezaSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="npcDestrezaLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Destreza:"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="criarNpcSalvarBotao">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Salvar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="criarNpcSalvarBotaoActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="mostrarNpcsPanel">
+          <Properties>
+            <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="mostrarNpcsCard"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="mostrarNpcsTituloSeparator" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="mostrarNpcsTituloLabel" min="-2" pref="300" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="mostrarNpcsListaScrollPane" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="mostrarNpcsTituloLabel" min="-2" pref="42" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="mostrarNpcsTituloSeparator" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="mostrarNpcsListaScrollPane" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="mostrarNpcsTituloLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Noto Serif Medium" size="36" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Npcs"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="mostrarNpcsTituloSeparator">
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="mostrarNpcsListaScrollPane">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="mostrarNpcsListaPanel">
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="912" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="482" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="editarNpcPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="editarNpcCard"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="editarNpcSalvarBotao" min="-2" pref="88" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="editarNpcTituloLabel" min="-2" pref="300" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="editarNpcId" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="editarNpcMainPanel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="editarNpcTituloSeparator1" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="editarNpcTituloLabel" min="-2" pref="42" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="editarNpcId" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="editarNpcTituloSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="editarNpcMainPanel" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="editarNpcSalvarBotao" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="editarNpcTituloLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Noto Serif Medium" size="36" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Editar NPC"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="editarNpcTituloSeparator1">
+            </Component>
+            <Container class="javax.swing.JPanel" name="editarNpcMainPanel">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="editarNpcNomeLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="editarNpcNomeTextField" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="editarNpcHitpointsLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="editarNpcHitpointsTextField" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
+                                          <Component id="editarNpcSalvamentosLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="editarNpcAdicionarSalvamentosBotao" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="48" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="editarNpcAlinhamentoLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="editarNpcAlinhamentoComboBox" min="-2" pref="145" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="editarNpcClasseDificuldadeLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="editarNpcClasseDificuldadeTextField" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="editarNpcVelocidadeLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="editarNpcVelocidadeTextField" min="-2" pref="60" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="editarNpcAcoesLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="editarNpcAdicionarAcoesBotao" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="editarNpcAcoesScroolpane" alignment="1" min="-2" pref="266" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="editarNpcClasseArmaduraLabel" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="editarNpcClasseArmaduraTextField" min="-2" pref="60" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="editarNpcForcaLabel" min="-2" pref="75" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                                          <Component id="editarNpcForcaSpinner" min="-2" pref="50" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="editarNpcConstituicaoLabel" min="-2" pref="75" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                                          <Component id="editarNpcConstituicaoSpinner" min="-2" pref="50" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="editarNpcSabedoriaLabel" min="-2" pref="75" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                                          <Component id="editarNpcSabedoriaSpinner" min="-2" pref="50" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="editarNpcDestrezaLabel" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                                                      <Component id="editarNpcInteligenciaLabel" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                                                      <Component id="editarNpcCarismaLabel" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="editarNpcCarismaSpinner" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="editarNpcInteligenciaSpinner" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="editarNpcDestrezaSpinner" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="editarNpcSalvamentosScroolpane" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="editarNpcPericiasLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="editarNpcAdicionarPericiasBotao" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="editarNpcPericiasScroolpane" min="-2" pref="160" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="editarNpcNomeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="editarNpcNomeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="editarNpcVelocidadeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="editarNpcVelocidadeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="editarNpcClasseDificuldadeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="editarNpcClasseDificuldadeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="editarNpcAlinhamentoComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="editarNpcAlinhamentoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="editarNpcHitpointsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcHitpointsTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcClasseArmaduraTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcClasseArmaduraLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="editarNpcSalvamentosLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcPericiasLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcAdicionarSalvamentosBotao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcAdicionarPericiasBotao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="editarNpcPericiasScroolpane" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="editarNpcDestrezaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="editarNpcDestrezaSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="editarNpcForcaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="editarNpcForcaSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="editarNpcConstituicaoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcConstituicaoSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcInteligenciaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcInteligenciaSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="editarNpcSabedoriaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcSabedoriaSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcCarismaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcCarismaSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="editarNpcAcoesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editarNpcAdicionarAcoesBotao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="editarNpcAcoesScroolpane" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="editarNpcSalvamentosScroolpane" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="editarNpcNomeLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nome:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="editarNpcNomeTextField">
+                </Component>
+                <Component class="javax.swing.JTextField" name="editarNpcVelocidadeTextField">
+                </Component>
+                <Component class="javax.swing.JLabel" name="editarNpcVelocidadeLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Velocidade:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="editarNpcClasseDificuldadeTextField">
+                </Component>
+                <Component class="javax.swing.JLabel" name="editarNpcClasseDificuldadeLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CD:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="editarNpcAlinhamentoComboBox">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="editarNpcAlinhamentoLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Alinhamento:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="editarNpcHitpointsLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Hit Points:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="editarNpcHitpointsTextField">
+                </Component>
+                <Component class="javax.swing.JTextField" name="editarNpcClasseArmaduraTextField">
+                </Component>
+                <Component class="javax.swing.JLabel" name="editarNpcClasseArmaduraLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CA:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="editarNpcForcaLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="For&#xe7;a:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="editarNpcForcaSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="editarNpcConstituicaoSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="editarNpcConstituicaoLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Constitui&#xe7;&#xe3;o:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="editarNpcInteligenciaSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="editarNpcInteligenciaLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Intelig&#xea;ncia:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="editarNpcSabedoriaSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="editarNpcSabedoriaLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Sabedoria:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="editarNpcCarismaSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="editarNpcCarismaLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Carisma:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="editarNpcAcoesLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="A&#xe7;&#xf5;es:"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="editarNpcAcoesScroolpane">
+                  <Properties>
+                    <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+                  </Properties>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="editarNpcAcoesPanel">
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+                        <Property name="axis" type="int" value="1"/>
+                      </Layout>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JButton" name="editarNpcAdicionarAcoesBotao">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarNpcAdicionarAcoesBotaoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="editarNpcSalvamentosScroolpane">
+                  <Properties>
+                    <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+                  </Properties>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="editarNpcSalvamentosPanel">
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+                        <Property name="axis" type="int" value="1"/>
+                      </Layout>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="editarNpcSalvamentosLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Salvamentos:"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="editarNpcPericiasScroolpane">
+                  <Properties>
+                    <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+                  </Properties>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="editarNpcPericiasPanel">
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+                        <Property name="axis" type="int" value="1"/>
+                      </Layout>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="editarNpcPericiasLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Per&#xed;cias:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="editarNpcAdicionarSalvamentosBotao">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarNpcAdicionarSalvamentosBotaoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="editarNpcAdicionarPericiasBotao">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarNpcAdicionarPericiasBotaoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="editarNpcDestrezaSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="editarNpcDestrezaLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Destreza:"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="editarNpcSalvarBotao">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Salvar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarNpcSalvarBotaoActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="editarNpcId">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

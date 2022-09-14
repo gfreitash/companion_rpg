@@ -6,12 +6,13 @@ package br.com.ui;
 
 import br.com.classes.Mapa;
 import br.com.interfaces.FuncaoActionPerformed;
-import java.awt.Image;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import javax.swing.*;
 
 /**
  *
@@ -50,6 +51,11 @@ public class DisplayMapa extends javax.swing.JPanel {
         mapaNomeLabel.setText("Nome: ");
 
         mapaDisplay.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        mapaDisplay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                mapaDisplayMousePressed(evt);
+            }
+        });
 
         mapaRemoverBotao.setText("Remover");
         mapaRemoverBotao.addActionListener(new java.awt.event.ActionListener() {
@@ -65,7 +71,7 @@ public class DisplayMapa extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mapaDisplay)
+                    .addComponent(mapaDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -97,6 +103,36 @@ public class DisplayMapa extends javax.swing.JPanel {
         this.removerAcao.actionPerformed();
     }//GEN-LAST:event_mapaRemoverBotaoActionPerformed
 
+    private void mapaDisplayMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapaDisplayMousePressed
+        //Vai exibir a imagem em tamanho maior em uma nova janela
+        //A janela somente exibirá a imagem.
+        //A imagem estará dentro de um JScrollPane.
+        //O endereço da imagem é o mesmo do mapa
+
+        File file = new File(this.mapa.getEndereco());
+        JFrame janela = new JFrame(this.mapa.getNome());
+        janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        janela.setSize(800, 600);
+        janela.setResizable(true);
+        janela.setLocationRelativeTo(null);
+        janela.setLayout(new BorderLayout());
+
+
+        JLabel label = new JLabel();
+        label.setIcon(new ImageIcon(file.getAbsolutePath()));
+        JScrollPane scroll = new JScrollPane(label);
+
+        Rectangle bounds = scroll.getViewport().getViewRect();
+        Dimension size = scroll.getViewport().getViewSize();
+        int x = (size.width - bounds.width) / 2;
+        int y = (size.height - bounds.height) / 2;
+        scroll.getViewport().setViewPosition(new Point(x, y));
+
+        janela.add(scroll, BorderLayout.CENTER);
+        janela.setVisible(true);
+
+    }//GEN-LAST:event_mapaDisplayMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
@@ -111,10 +147,10 @@ public class DisplayMapa extends javax.swing.JPanel {
         
         BufferedImage imagem = null;
         try{
-            imagem = ImageIO.read(new File (mapa.getEndereço()));
+            imagem = ImageIO.read(new File (mapa.getEndereco()));
             Image mapaImagem = imagem.getScaledInstance(342, 266, Image.SCALE_SMOOTH);
             mapaDisplay.setIcon(new ImageIcon(mapaImagem));
-        }catch(IOException e){
+        }catch(IOException|NullPointerException e){
            e.printStackTrace();
         }
                 

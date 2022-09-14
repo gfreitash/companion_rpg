@@ -7,12 +7,15 @@ package br.com;
 
 import com.google.gson.Gson;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+
 /**
  *
  * @author gfreitash
  */
 public class CompanionRpg {
     public static void main(String[] args) {
-
     }
 }

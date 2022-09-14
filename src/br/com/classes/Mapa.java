@@ -11,18 +11,18 @@ import java.util.Objects;
  * @author Thiago
  */
 public class Mapa extends Comparavel{
-    private String endereço;
+    private String endereco;
     private String nome;
 
-    public Mapa(String endereço, String nome) {
+    public Mapa(String endereco, String nome) {
         super(nome);
-        this.endereço = endereço;
+        this.endereco = endereco;
         this.nome = nome;
     }
 
-    public Mapa(String endereço, String nome, String identificador) {
+    public Mapa(String endereco, String nome, String identificador) {
         super(identificador);
-        this.endereço = endereço;
+        this.endereco = endereco;
         this.nome = nome;
     } 
     
@@ -33,7 +33,7 @@ public class Mapa extends Comparavel{
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.endereço);
+        hash = 37 * hash + Objects.hashCode(this.endereco);
         hash = 37 * hash + Objects.hashCode(this.nome);
         return hash;
     }
@@ -50,7 +50,7 @@ public class Mapa extends Comparavel{
             return false;
         }
         final Mapa other = (Mapa) obj;
-        if (!Objects.equals(this.endereço, other.endereço)) {
+        if (!Objects.equals(this.endereco, other.endereco)) {
             return false;
         }
         return Objects.equals(this.nome, other.nome);
@@ -58,7 +58,7 @@ public class Mapa extends Comparavel{
 
     @Override
     public String toString() {
-        return "Mapa{" + "endere\u00e7o=" + endereço + ", nome=" + nome + '}';
+        return "Mapa{" + "endere\u00e7o=" + endereco + ", nome=" + nome + '}';
     }
 
     @Override
@@ -68,15 +68,15 @@ public class Mapa extends Comparavel{
 
     @Override
     public Comparavel editarObjeto(String id) {
-        return new Mapa(this.endereço, this.nome, id);        
+        return new Mapa(this.endereco, this.nome, id);
     }  
 
-    public String getEndereço() {
-        return endereço;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setEndereço(String endereço) {
-        this.endereço = endereço;
+    public void setEndereco(String endereço) {
+        this.endereco = endereço;
     }
 
     public String getNome() {
@@ -86,6 +86,5 @@ public class Mapa extends Comparavel{
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    
+
 }

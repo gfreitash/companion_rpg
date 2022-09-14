@@ -4,18 +4,19 @@
  */
 package br.com.ui;
 
-import br.com.classes.Item;
-import br.com.classes.Mapa;
+import br.com.classes.*;
 import br.com.interfaces.Comparavel;
 import br.com.io.CrudGenerico;
 import com.google.gson.reflect.TypeToken;
 
-import java.awt.CardLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.Map;
 import java.util.TreeMap;
 import java.io.File;
@@ -23,7 +24,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import javax.swing.JFileChooser;
 
 /**
  *
@@ -49,7 +49,9 @@ public class Janela extends javax.swing.JFrame {
     private void initComponents() {
 
         painelPrincipal = new javax.swing.JPanel();
-        homePanel = new javax.swing.JPanel();
+        inicioPanel = new javax.swing.JPanel();
+        boasVindasLabel = new javax.swing.JLabel();
+        capaLabel = new javax.swing.JLabel();
         criarItemPanel = new javax.swing.JPanel();
         criarItemTituloLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -65,13 +67,11 @@ public class Janela extends javax.swing.JFrame {
         criarItemDescricaoLabel = new javax.swing.JLabel();
         criarItemDescricaoScroolPane = new javax.swing.JScrollPane();
         criarItemDescricaoTextArea = new javax.swing.JTextArea();
-        criarNpcPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         mostrarItensPanel = new javax.swing.JPanel();
         mostrarItensTituloLabel = new javax.swing.JLabel();
         mostrarItensTituloSeparator = new javax.swing.JSeparator();
-        mostrarItensListaItensScrollpane = new javax.swing.JScrollPane();
-        mostrarItensListaItensPanel = new javax.swing.JPanel();
+        mostrarItensListaScrollpane = new javax.swing.JScrollPane();
+        mostrarItensListaPanel = new javax.swing.JPanel();
         carregandoPanel = new javax.swing.JPanel();
         carregandoLabel = new javax.swing.JLabel();
         editarItemPanel = new javax.swing.JPanel();
@@ -89,7 +89,7 @@ public class Janela extends javax.swing.JFrame {
         editarItemDescricaoLabel = new javax.swing.JLabel();
         editarItemDescricaoScroolpane = new javax.swing.JScrollPane();
         editarItemDescricaoTextArea = new javax.swing.JTextArea();
-        editarItemNomeOriginal = new javax.swing.JLabel();
+        editarItemId = new javax.swing.JLabel();
         rollDicePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -112,8 +112,96 @@ public class Janela extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         listaMapas = new javax.swing.JPanel();
         addMapa = new javax.swing.JButton();
+        criarNpcPanel = new javax.swing.JPanel();
+        criarNpcTituloLabel = new javax.swing.JLabel();
+        criarNpcTituloSeparator = new javax.swing.JSeparator();
+        criarNpcMainPanel = new javax.swing.JPanel();
+        npcNomeLabel = new javax.swing.JLabel();
+        npcNomeTextField = new javax.swing.JTextField();
+        npcVelocidadeTextField = new javax.swing.JTextField();
+        npcVelocidadeLabel = new javax.swing.JLabel();
+        npcClasseDificuldadeTextField = new javax.swing.JTextField();
+        npcClasseDificuldadeLabel = new javax.swing.JLabel();
+        npcAlinhamentoComboBox = new javax.swing.JComboBox<>();
+        npcAlinhamentoLabel = new javax.swing.JLabel();
+        npcHitpointsLabel = new javax.swing.JLabel();
+        npcHitpointsTextField = new javax.swing.JTextField();
+        npcClasseArmaduraTextField = new javax.swing.JTextField();
+        npcClasseArmaduraLabel = new javax.swing.JLabel();
+        npcForcaLabel = new javax.swing.JLabel();
+        npcForcaSpinner = new javax.swing.JSpinner();
+        npcConstituicaoSpinner = new javax.swing.JSpinner();
+        npcConstituicaoLabel = new javax.swing.JLabel();
+        npcInteligenciaSpinner = new javax.swing.JSpinner();
+        npcInteligenciaLabel = new javax.swing.JLabel();
+        npcSabedoriaSpinner = new javax.swing.JSpinner();
+        npcSabedoriaLabel = new javax.swing.JLabel();
+        npcCarismaSpinner = new javax.swing.JSpinner();
+        npcCarismaLabel = new javax.swing.JLabel();
+        npcAcoesLabel = new javax.swing.JLabel();
+        npcAcoesScroolpane = new javax.swing.JScrollPane();
+        npcAcoesPanel = new javax.swing.JPanel();
+        npcAdicionarAcoesBotao = new javax.swing.JButton();
+        npcSalvamentosScroolpane = new javax.swing.JScrollPane();
+        npcSalvamentosPanel = new javax.swing.JPanel();
+        npcSalvamentosLabel = new javax.swing.JLabel();
+        npcPericiasScroolpane = new javax.swing.JScrollPane();
+        npcPericiasPanel = new javax.swing.JPanel();
+        npcPericiasLabel = new javax.swing.JLabel();
+        npcAdicionarSalvamentosBotao = new javax.swing.JButton();
+        npcAdicionarPericiasBotao = new javax.swing.JButton();
+        npcDestrezaSpinner = new javax.swing.JSpinner();
+        npcDestrezaLabel = new javax.swing.JLabel();
+        criarNpcSalvarBotao = new javax.swing.JButton();
+        mostrarNpcsPanel = new javax.swing.JPanel();
+        mostrarNpcsTituloLabel = new javax.swing.JLabel();
+        mostrarNpcsTituloSeparator = new javax.swing.JSeparator();
+        mostrarNpcsListaScrollPane = new javax.swing.JScrollPane();
+        mostrarNpcsListaPanel = new javax.swing.JPanel();
+        editarNpcPanel = new javax.swing.JPanel();
+        editarNpcTituloLabel = new javax.swing.JLabel();
+        editarNpcTituloSeparator1 = new javax.swing.JSeparator();
+        editarNpcMainPanel = new javax.swing.JPanel();
+        editarNpcNomeLabel = new javax.swing.JLabel();
+        editarNpcNomeTextField = new javax.swing.JTextField();
+        editarNpcVelocidadeTextField = new javax.swing.JTextField();
+        editarNpcVelocidadeLabel = new javax.swing.JLabel();
+        editarNpcClasseDificuldadeTextField = new javax.swing.JTextField();
+        editarNpcClasseDificuldadeLabel = new javax.swing.JLabel();
+        editarNpcAlinhamentoComboBox = new javax.swing.JComboBox<>();
+        editarNpcAlinhamentoLabel = new javax.swing.JLabel();
+        editarNpcHitpointsLabel = new javax.swing.JLabel();
+        editarNpcHitpointsTextField = new javax.swing.JTextField();
+        editarNpcClasseArmaduraTextField = new javax.swing.JTextField();
+        editarNpcClasseArmaduraLabel = new javax.swing.JLabel();
+        editarNpcForcaLabel = new javax.swing.JLabel();
+        editarNpcForcaSpinner = new javax.swing.JSpinner();
+        editarNpcConstituicaoSpinner = new javax.swing.JSpinner();
+        editarNpcConstituicaoLabel = new javax.swing.JLabel();
+        editarNpcInteligenciaSpinner = new javax.swing.JSpinner();
+        editarNpcInteligenciaLabel = new javax.swing.JLabel();
+        editarNpcSabedoriaSpinner = new javax.swing.JSpinner();
+        editarNpcSabedoriaLabel = new javax.swing.JLabel();
+        editarNpcCarismaSpinner = new javax.swing.JSpinner();
+        editarNpcCarismaLabel = new javax.swing.JLabel();
+        editarNpcAcoesLabel = new javax.swing.JLabel();
+        editarNpcAcoesScroolpane = new javax.swing.JScrollPane();
+        editarNpcAcoesPanel = new javax.swing.JPanel();
+        editarNpcAdicionarAcoesBotao = new javax.swing.JButton();
+        editarNpcSalvamentosScroolpane = new javax.swing.JScrollPane();
+        editarNpcSalvamentosPanel = new javax.swing.JPanel();
+        editarNpcSalvamentosLabel = new javax.swing.JLabel();
+        editarNpcPericiasScroolpane = new javax.swing.JScrollPane();
+        editarNpcPericiasPanel = new javax.swing.JPanel();
+        editarNpcPericiasLabel = new javax.swing.JLabel();
+        editarNpcAdicionarSalvamentosBotao = new javax.swing.JButton();
+        editarNpcAdicionarPericiasBotao = new javax.swing.JButton();
+        editarNpcDestrezaSpinner = new javax.swing.JSpinner();
+        editarNpcDestrezaLabel = new javax.swing.JLabel();
+        editarNpcSalvarBotao = new javax.swing.JButton();
+        editarNpcId = new javax.swing.JLabel();
         barraMenu = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        inicioMenu = new javax.swing.JMenu();
         itensMenu = new javax.swing.JMenu();
         criarItemMenuItem = new javax.swing.JMenuItem();
         mostrarItensMenuItem = new javax.swing.JMenuItem();
@@ -128,18 +216,15 @@ public class Janela extends javax.swing.JFrame {
         painelPrincipal.setEnabled(false);
         painelPrincipal.setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
-        homePanel.setLayout(homePanelLayout);
-        homePanelLayout.setHorizontalGroup(
-            homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 883, Short.MAX_VALUE)
-        );
-        homePanelLayout.setVerticalGroup(
-            homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 439, Short.MAX_VALUE)
-        );
+        inicioPanel.setLayout(new java.awt.BorderLayout());
 
-        painelPrincipal.add(homePanel, "card4");
+        boasVindasLabel.setFont(new java.awt.Font("DejaVu Serif", 0, 36)); // NOI18N
+        boasVindasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        boasVindasLabel.setText("Bem-vindo ao Companion de RPG");
+        inicioPanel.add(boasVindasLabel, java.awt.BorderLayout.NORTH);
+        inicioPanel.add(capaLabel, java.awt.BorderLayout.CENTER);
+
+        painelPrincipal.add(inicioPanel, "inicioCard");
 
         criarItemTituloLabel.setFont(new java.awt.Font("Noto Serif Medium", 0, 36)); // NOI18N
         criarItemTituloLabel.setText("Criar Item");
@@ -232,7 +317,7 @@ public class Janela extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(criarItemMagicoCheckbox))
                                     .addComponent(criarItemDescricaoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 142, Short.MAX_VALUE)))))
+                                .addGap(0, 168, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         criarItemPanelLayout.setVerticalGroup(
@@ -263,7 +348,7 @@ public class Janela extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(criarItemDescricaoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(criarItemDescricaoScroolPane, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                .addComponent(criarItemDescricaoScroolPane, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -273,43 +358,21 @@ public class Janela extends javax.swing.JFrame {
 
         painelPrincipal.add(criarItemPanel, "criarItemCard");
 
-        jLabel1.setFont(new java.awt.Font("Noto Serif Medium", 0, 36)); // NOI18N
-        jLabel1.setText("Criar NPC");
-
-        javax.swing.GroupLayout criarNpcPanelLayout = new javax.swing.GroupLayout(criarNpcPanel);
-        criarNpcPanel.setLayout(criarNpcPanelLayout);
-        criarNpcPanelLayout.setHorizontalGroup(
-            criarNpcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(criarNpcPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(577, Short.MAX_VALUE))
-        );
-        criarNpcPanelLayout.setVerticalGroup(
-            criarNpcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(criarNpcPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(391, Short.MAX_VALUE))
-        );
-
-        painelPrincipal.add(criarNpcPanel, "criarNpcCard");
-
         mostrarItensTituloLabel.setFont(new java.awt.Font("Noto Serif Medium", 0, 36)); // NOI18N
         mostrarItensTituloLabel.setText("Itens");
 
-        javax.swing.GroupLayout mostrarItensListaItensPanelLayout = new javax.swing.GroupLayout(mostrarItensListaItensPanel);
-        mostrarItensListaItensPanel.setLayout(mostrarItensListaItensPanelLayout);
-        mostrarItensListaItensPanelLayout.setHorizontalGroup(
-            mostrarItensListaItensPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 863, Short.MAX_VALUE)
+        javax.swing.GroupLayout mostrarItensListaPanelLayout = new javax.swing.GroupLayout(mostrarItensListaPanel);
+        mostrarItensListaPanel.setLayout(mostrarItensListaPanelLayout);
+        mostrarItensListaPanelLayout.setHorizontalGroup(
+            mostrarItensListaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
         );
-        mostrarItensListaItensPanelLayout.setVerticalGroup(
-            mostrarItensListaItensPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
+        mostrarItensListaPanelLayout.setVerticalGroup(
+            mostrarItensListaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 476, Short.MAX_VALUE)
         );
 
-        mostrarItensListaItensScrollpane.setViewportView(mostrarItensListaItensPanel);
+        mostrarItensListaScrollpane.setViewportView(mostrarItensListaPanel);
 
         javax.swing.GroupLayout mostrarItensPanelLayout = new javax.swing.GroupLayout(mostrarItensPanel);
         mostrarItensPanel.setLayout(mostrarItensPanelLayout);
@@ -326,7 +389,7 @@ public class Janela extends javax.swing.JFrame {
                             .addComponent(mostrarItensTituloSeparator, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(mostrarItensPanelLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(mostrarItensListaItensScrollpane)))
+                        .addComponent(mostrarItensListaScrollpane)))
                 .addContainerGap())
         );
         mostrarItensPanelLayout.setVerticalGroup(
@@ -337,7 +400,7 @@ public class Janela extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mostrarItensTituloSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mostrarItensListaItensScrollpane)
+                .addComponent(mostrarItensListaScrollpane)
                 .addContainerGap())
         );
 
@@ -353,14 +416,14 @@ public class Janela extends javax.swing.JFrame {
             carregandoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(carregandoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(carregandoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 871, Short.MAX_VALUE)
+                .addComponent(carregandoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 909, Short.MAX_VALUE)
                 .addContainerGap())
         );
         carregandoPanelLayout.setVerticalGroup(
             carregandoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(carregandoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(carregandoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                .addComponent(carregandoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -419,8 +482,8 @@ public class Janela extends javax.swing.JFrame {
         editarItemDescricaoTextArea.setRows(5);
         editarItemDescricaoScroolpane.setViewportView(editarItemDescricaoTextArea);
 
-        editarItemNomeOriginal.setText("jLabel2");
-        editarItemNomeOriginal.setEnabled(false);
+        editarItemId.setText("jLabel2");
+        editarItemId.setEnabled(false);
 
         javax.swing.GroupLayout editarItemPanelLayout = new javax.swing.GroupLayout(editarItemPanel);
         editarItemPanel.setLayout(editarItemPanelLayout);
@@ -434,7 +497,7 @@ public class Janela extends javax.swing.JFrame {
                             .addGroup(editarItemPanelLayout.createSequentialGroup()
                                 .addComponent(editarItemTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editarItemNomeOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(editarItemId, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(editarItemTituloSeparator, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(editarItemRodapeSeparator)
@@ -462,7 +525,7 @@ public class Janela extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(editarItemMagicoCheckbox))
                                     .addComponent(editarItemDescricaoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 142, Short.MAX_VALUE)))))
+                                .addGap(0, 168, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         editarItemPanelLayout.setVerticalGroup(
@@ -471,7 +534,7 @@ public class Janela extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editarItemTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editarItemNomeOriginal))
+                    .addComponent(editarItemId))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(editarItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(editarItemPanelLayout.createSequentialGroup()
@@ -495,7 +558,7 @@ public class Janela extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(editarItemDescricaoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editarItemDescricaoScroolpane, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                .addComponent(editarItemDescricaoScroolpane, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(editarItemRodapeSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -580,7 +643,7 @@ public class Janela extends javax.swing.JFrame {
                             .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(spinnerD20)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         rollDicePanelLayout.setVerticalGroup(
             rollDicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,7 +669,7 @@ public class Janela extends javax.swing.JFrame {
                     .addComponent(spinnerD10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spinnerD12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spinnerD20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addGroup(rollDicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(rollDiceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
@@ -619,11 +682,11 @@ public class Janela extends javax.swing.JFrame {
         listaMapas.setLayout(listaMapasLayout);
         listaMapasLayout.setHorizontalGroup(
             listaMapasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 869, Short.MAX_VALUE)
+            .addGap(0, 906, Short.MAX_VALUE)
         );
         listaMapasLayout.setVerticalGroup(
             listaMapasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
 
         jScrollPane3.setViewportView(listaMapas);
@@ -645,7 +708,7 @@ public class Janela extends javax.swing.JFrame {
                     .addComponent(jScrollPane3)
                     .addGroup(mapaPanelLayout.createSequentialGroup()
                         .addComponent(addMapa)
-                        .addGap(0, 757, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         mapaPanelLayout.setVerticalGroup(
@@ -654,14 +717,603 @@ public class Janela extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(addMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addContainerGap())
         );
 
         painelPrincipal.add(mapaPanel, "mapCard");
 
-        jMenu1.setText("File");
-        barraMenu.add(jMenu1);
+        criarNpcTituloLabel.setFont(new java.awt.Font("Noto Serif Medium", 0, 36)); // NOI18N
+        criarNpcTituloLabel.setText("Criar NPC");
+
+        npcNomeLabel.setText("Nome:");
+
+        npcVelocidadeLabel.setText("Velocidade:");
+
+        npcClasseDificuldadeLabel.setText("CD:");
+
+        npcAlinhamentoLabel.setText("Alinhamento:");
+
+        npcHitpointsLabel.setText("Hit Points:");
+
+        npcClasseArmaduraLabel.setText("CA:");
+
+        npcForcaLabel.setText("Força:");
+
+        npcForcaSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        npcConstituicaoSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        npcConstituicaoLabel.setText("Constituição:");
+
+        npcInteligenciaSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        npcInteligenciaLabel.setText("Inteligência:");
+
+        npcSabedoriaSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        npcSabedoriaLabel.setText("Sabedoria:");
+
+        npcCarismaSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        npcCarismaLabel.setText("Carisma:");
+
+        npcAcoesLabel.setText("Ações:");
+
+        npcAcoesScroolpane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        npcAcoesPanel.setLayout(new javax.swing.BoxLayout(npcAcoesPanel, javax.swing.BoxLayout.Y_AXIS));
+        npcAcoesScroolpane.setViewportView(npcAcoesPanel);
+
+        npcAdicionarAcoesBotao.setText("+");
+        npcAdicionarAcoesBotao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                npcAdicionarAcoesBotaoActionPerformed(evt);
+            }
+        });
+
+        npcSalvamentosScroolpane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        npcSalvamentosPanel.setLayout(new javax.swing.BoxLayout(npcSalvamentosPanel, javax.swing.BoxLayout.Y_AXIS));
+        npcSalvamentosScroolpane.setViewportView(npcSalvamentosPanel);
+
+        npcSalvamentosLabel.setText("Salvamentos:");
+
+        npcPericiasScroolpane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        npcPericiasPanel.setLayout(new javax.swing.BoxLayout(npcPericiasPanel, javax.swing.BoxLayout.Y_AXIS));
+        npcPericiasScroolpane.setViewportView(npcPericiasPanel);
+
+        npcPericiasLabel.setText("Perícias:");
+
+        npcAdicionarSalvamentosBotao.setText("+");
+        npcAdicionarSalvamentosBotao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                npcAdicionarSalvamentosBotaoActionPerformed(evt);
+            }
+        });
+
+        npcAdicionarPericiasBotao.setText("+");
+        npcAdicionarPericiasBotao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                npcAdicionarPericiasBotaoActionPerformed(evt);
+            }
+        });
+
+        npcDestrezaSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        npcDestrezaLabel.setText("Destreza:");
+
+        javax.swing.GroupLayout criarNpcMainPanelLayout = new javax.swing.GroupLayout(criarNpcMainPanel);
+        criarNpcMainPanel.setLayout(criarNpcMainPanelLayout);
+        criarNpcMainPanelLayout.setHorizontalGroup(
+            criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                        .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                                .addComponent(npcNomeLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(npcNomeTextField))
+                            .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                                .addComponent(npcHitpointsLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(npcHitpointsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(152, 152, 152)
+                                .addComponent(npcSalvamentosLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(npcAdicionarSalvamentosBotao)
+                                .addGap(0, 48, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(npcAlinhamentoLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(npcAlinhamentoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(npcClasseDificuldadeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(npcClasseDificuldadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(npcVelocidadeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(npcVelocidadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                        .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                                    .addComponent(npcAcoesLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(npcAdicionarAcoesBotao))
+                                .addComponent(npcAcoesScroolpane, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, criarNpcMainPanelLayout.createSequentialGroup()
+                                .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                                        .addComponent(npcClasseArmaduraLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(npcClasseArmaduraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                                        .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                                                .addComponent(npcForcaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(2, 2, 2)
+                                                .addComponent(npcForcaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                                                .addComponent(npcConstituicaoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(2, 2, 2)
+                                                .addComponent(npcConstituicaoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                                                .addComponent(npcSabedoriaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(2, 2, 2)
+                                                .addComponent(npcSabedoriaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(npcDestrezaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(npcInteligenciaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(npcCarismaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(2, 2, 2)
+                                        .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(npcCarismaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(npcInteligenciaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(npcDestrezaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(6, 6, 6)))
+                        .addComponent(npcSalvamentosScroolpane, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                                .addComponent(npcPericiasLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(npcAdicionarPericiasBotao))
+                            .addComponent(npcPericiasScroolpane, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        criarNpcMainPanelLayout.setVerticalGroup(
+            criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(npcNomeLabel)
+                    .addComponent(npcNomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(npcVelocidadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(npcVelocidadeLabel)
+                    .addComponent(npcClasseDificuldadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(npcClasseDificuldadeLabel)
+                    .addComponent(npcAlinhamentoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(npcAlinhamentoLabel))
+                .addGap(18, 18, 18)
+                .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                        .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(npcHitpointsLabel)
+                            .addComponent(npcHitpointsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(npcClasseArmaduraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(npcClasseArmaduraLabel))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, criarNpcMainPanelLayout.createSequentialGroup()
+                        .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(npcSalvamentosLabel)
+                            .addComponent(npcPericiasLabel)
+                            .addComponent(npcAdicionarSalvamentosBotao)
+                            .addComponent(npcAdicionarPericiasBotao))
+                        .addGap(2, 2, 2)))
+                .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(npcPericiasScroolpane)
+                    .addGroup(criarNpcMainPanelLayout.createSequentialGroup()
+                        .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(npcDestrezaLabel)
+                                .addComponent(npcDestrezaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(npcForcaLabel)
+                                .addComponent(npcForcaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(npcConstituicaoLabel)
+                            .addComponent(npcConstituicaoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(npcInteligenciaLabel)
+                            .addComponent(npcInteligenciaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(npcSabedoriaLabel)
+                            .addComponent(npcSabedoriaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(npcCarismaLabel)
+                            .addComponent(npcCarismaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(criarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(npcAcoesLabel)
+                            .addComponent(npcAdicionarAcoesBotao))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(npcAcoesScroolpane))
+                    .addComponent(npcSalvamentosScroolpane))
+                .addContainerGap())
+        );
+
+        criarNpcSalvarBotao.setText("Salvar");
+        criarNpcSalvarBotao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criarNpcSalvarBotaoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout criarNpcPanelLayout = new javax.swing.GroupLayout(criarNpcPanel);
+        criarNpcPanel.setLayout(criarNpcPanelLayout);
+        criarNpcPanelLayout.setHorizontalGroup(
+            criarNpcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(criarNpcPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(criarNpcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, criarNpcPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(criarNpcSalvarBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(criarNpcPanelLayout.createSequentialGroup()
+                        .addComponent(criarNpcTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(criarNpcMainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(criarNpcTituloSeparator))
+                .addContainerGap())
+        );
+        criarNpcPanelLayout.setVerticalGroup(
+            criarNpcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(criarNpcPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(criarNpcTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(criarNpcTituloSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(criarNpcMainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(criarNpcSalvarBotao)
+                .addContainerGap())
+        );
+
+        painelPrincipal.add(criarNpcPanel, "criarNpcCard");
+
+        mostrarNpcsPanel.setVerifyInputWhenFocusTarget(false);
+
+        mostrarNpcsTituloLabel.setFont(new java.awt.Font("Noto Serif Medium", 0, 36)); // NOI18N
+        mostrarNpcsTituloLabel.setText("Npcs");
+
+        javax.swing.GroupLayout mostrarNpcsListaPanelLayout = new javax.swing.GroupLayout(mostrarNpcsListaPanel);
+        mostrarNpcsListaPanel.setLayout(mostrarNpcsListaPanelLayout);
+        mostrarNpcsListaPanelLayout.setHorizontalGroup(
+            mostrarNpcsListaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 912, Short.MAX_VALUE)
+        );
+        mostrarNpcsListaPanelLayout.setVerticalGroup(
+            mostrarNpcsListaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 482, Short.MAX_VALUE)
+        );
+
+        mostrarNpcsListaScrollPane.setViewportView(mostrarNpcsListaPanel);
+
+        javax.swing.GroupLayout mostrarNpcsPanelLayout = new javax.swing.GroupLayout(mostrarNpcsPanel);
+        mostrarNpcsPanel.setLayout(mostrarNpcsPanelLayout);
+        mostrarNpcsPanelLayout.setHorizontalGroup(
+            mostrarNpcsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mostrarNpcsTituloSeparator, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(mostrarNpcsPanelLayout.createSequentialGroup()
+                .addComponent(mostrarNpcsTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(mostrarNpcsPanelLayout.createSequentialGroup()
+                .addComponent(mostrarNpcsListaScrollPane)
+                .addContainerGap())
+        );
+        mostrarNpcsPanelLayout.setVerticalGroup(
+            mostrarNpcsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mostrarNpcsPanelLayout.createSequentialGroup()
+                .addComponent(mostrarNpcsTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mostrarNpcsTituloSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mostrarNpcsListaScrollPane)
+                .addContainerGap())
+        );
+
+        painelPrincipal.add(mostrarNpcsPanel, "mostrarNpcsCard");
+
+        editarNpcTituloLabel.setFont(new java.awt.Font("Noto Serif Medium", 0, 36)); // NOI18N
+        editarNpcTituloLabel.setText("Editar NPC");
+
+        editarNpcNomeLabel.setText("Nome:");
+
+        editarNpcVelocidadeLabel.setText("Velocidade:");
+
+        editarNpcClasseDificuldadeLabel.setText("CD:");
+
+        editarNpcAlinhamentoLabel.setText("Alinhamento:");
+
+        editarNpcHitpointsLabel.setText("Hit Points:");
+
+        editarNpcClasseArmaduraLabel.setText("CA:");
+
+        editarNpcForcaLabel.setText("Força:");
+
+        editarNpcForcaSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        editarNpcConstituicaoSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        editarNpcConstituicaoLabel.setText("Constituição:");
+
+        editarNpcInteligenciaSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        editarNpcInteligenciaLabel.setText("Inteligência:");
+
+        editarNpcSabedoriaSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        editarNpcSabedoriaLabel.setText("Sabedoria:");
+
+        editarNpcCarismaSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        editarNpcCarismaLabel.setText("Carisma:");
+
+        editarNpcAcoesLabel.setText("Ações:");
+
+        editarNpcAcoesScroolpane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        editarNpcAcoesPanel.setLayout(new javax.swing.BoxLayout(editarNpcAcoesPanel, javax.swing.BoxLayout.Y_AXIS));
+        editarNpcAcoesScroolpane.setViewportView(editarNpcAcoesPanel);
+
+        editarNpcAdicionarAcoesBotao.setText("+");
+        editarNpcAdicionarAcoesBotao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarNpcAdicionarAcoesBotaoActionPerformed(evt);
+            }
+        });
+
+        editarNpcSalvamentosScroolpane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        editarNpcSalvamentosPanel.setLayout(new javax.swing.BoxLayout(editarNpcSalvamentosPanel, javax.swing.BoxLayout.Y_AXIS));
+        editarNpcSalvamentosScroolpane.setViewportView(editarNpcSalvamentosPanel);
+
+        editarNpcSalvamentosLabel.setText("Salvamentos:");
+
+        editarNpcPericiasScroolpane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        editarNpcPericiasPanel.setLayout(new javax.swing.BoxLayout(editarNpcPericiasPanel, javax.swing.BoxLayout.Y_AXIS));
+        editarNpcPericiasScroolpane.setViewportView(editarNpcPericiasPanel);
+
+        editarNpcPericiasLabel.setText("Perícias:");
+
+        editarNpcAdicionarSalvamentosBotao.setText("+");
+        editarNpcAdicionarSalvamentosBotao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarNpcAdicionarSalvamentosBotaoActionPerformed(evt);
+            }
+        });
+
+        editarNpcAdicionarPericiasBotao.setText("+");
+        editarNpcAdicionarPericiasBotao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarNpcAdicionarPericiasBotaoActionPerformed(evt);
+            }
+        });
+
+        editarNpcDestrezaSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        editarNpcDestrezaLabel.setText("Destreza:");
+
+        javax.swing.GroupLayout editarNpcMainPanelLayout = new javax.swing.GroupLayout(editarNpcMainPanel);
+        editarNpcMainPanel.setLayout(editarNpcMainPanelLayout);
+        editarNpcMainPanelLayout.setHorizontalGroup(
+            editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                        .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                                .addComponent(editarNpcNomeLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editarNpcNomeTextField))
+                            .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                                .addComponent(editarNpcHitpointsLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editarNpcHitpointsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(152, 152, 152)
+                                .addComponent(editarNpcSalvamentosLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editarNpcAdicionarSalvamentosBotao)
+                                .addGap(0, 48, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(editarNpcAlinhamentoLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editarNpcAlinhamentoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(editarNpcClasseDificuldadeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editarNpcClasseDificuldadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(editarNpcVelocidadeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editarNpcVelocidadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                        .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                                    .addComponent(editarNpcAcoesLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(editarNpcAdicionarAcoesBotao))
+                                .addComponent(editarNpcAcoesScroolpane, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNpcMainPanelLayout.createSequentialGroup()
+                                .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                                        .addComponent(editarNpcClasseArmaduraLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(editarNpcClasseArmaduraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                                        .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                                                .addComponent(editarNpcForcaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(2, 2, 2)
+                                                .addComponent(editarNpcForcaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                                                .addComponent(editarNpcConstituicaoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(2, 2, 2)
+                                                .addComponent(editarNpcConstituicaoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                                                .addComponent(editarNpcSabedoriaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(2, 2, 2)
+                                                .addComponent(editarNpcSabedoriaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(editarNpcDestrezaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(editarNpcInteligenciaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(editarNpcCarismaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(2, 2, 2)
+                                        .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(editarNpcCarismaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(editarNpcInteligenciaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(editarNpcDestrezaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(6, 6, 6)))
+                        .addComponent(editarNpcSalvamentosScroolpane, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                                .addComponent(editarNpcPericiasLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editarNpcAdicionarPericiasBotao))
+                            .addComponent(editarNpcPericiasScroolpane, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        editarNpcMainPanelLayout.setVerticalGroup(
+            editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editarNpcNomeLabel)
+                    .addComponent(editarNpcNomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editarNpcVelocidadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editarNpcVelocidadeLabel)
+                    .addComponent(editarNpcClasseDificuldadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editarNpcClasseDificuldadeLabel)
+                    .addComponent(editarNpcAlinhamentoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editarNpcAlinhamentoLabel))
+                .addGap(18, 18, 18)
+                .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                        .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editarNpcHitpointsLabel)
+                            .addComponent(editarNpcHitpointsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editarNpcClasseArmaduraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editarNpcClasseArmaduraLabel))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNpcMainPanelLayout.createSequentialGroup()
+                        .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editarNpcSalvamentosLabel)
+                            .addComponent(editarNpcPericiasLabel)
+                            .addComponent(editarNpcAdicionarSalvamentosBotao)
+                            .addComponent(editarNpcAdicionarPericiasBotao))
+                        .addGap(2, 2, 2)))
+                .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editarNpcPericiasScroolpane)
+                    .addGroup(editarNpcMainPanelLayout.createSequentialGroup()
+                        .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(editarNpcDestrezaLabel)
+                                .addComponent(editarNpcDestrezaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(editarNpcForcaLabel)
+                                .addComponent(editarNpcForcaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editarNpcConstituicaoLabel)
+                            .addComponent(editarNpcConstituicaoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editarNpcInteligenciaLabel)
+                            .addComponent(editarNpcInteligenciaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editarNpcSabedoriaLabel)
+                            .addComponent(editarNpcSabedoriaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editarNpcCarismaLabel)
+                            .addComponent(editarNpcCarismaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(editarNpcMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editarNpcAcoesLabel)
+                            .addComponent(editarNpcAdicionarAcoesBotao))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editarNpcAcoesScroolpane))
+                    .addComponent(editarNpcSalvamentosScroolpane))
+                .addContainerGap())
+        );
+
+        editarNpcSalvarBotao.setText("Salvar");
+        editarNpcSalvarBotao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarNpcSalvarBotaoActionPerformed(evt);
+            }
+        });
+
+        editarNpcId.setEnabled(false);
+
+        javax.swing.GroupLayout editarNpcPanelLayout = new javax.swing.GroupLayout(editarNpcPanel);
+        editarNpcPanel.setLayout(editarNpcPanelLayout);
+        editarNpcPanelLayout.setHorizontalGroup(
+            editarNpcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editarNpcPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editarNpcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNpcPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(editarNpcSalvarBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(editarNpcPanelLayout.createSequentialGroup()
+                        .addComponent(editarNpcTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(editarNpcId)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(editarNpcMainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editarNpcTituloSeparator1))
+                .addContainerGap())
+        );
+        editarNpcPanelLayout.setVerticalGroup(
+            editarNpcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editarNpcPanelLayout.createSequentialGroup()
+                .addGroup(editarNpcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editarNpcPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(editarNpcTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(editarNpcPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(editarNpcId)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editarNpcTituloSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editarNpcMainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editarNpcSalvarBotao)
+                .addContainerGap())
+        );
+
+        painelPrincipal.add(editarNpcPanel, "editarNpcCard");
+
+        inicioMenu.setText("Início");
+        inicioMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                inicioMenuMousePressed(evt);
+            }
+        });
+        barraMenu.add(inicioMenu);
 
         itensMenu.setText("Itens");
 
@@ -686,6 +1338,11 @@ public class Janela extends javax.swing.JFrame {
         npcsMenu.setText("NPC");
 
         criarNpcMenuItem.setText("Criar NPC");
+        criarNpcMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criarNpcMenuItemActionPerformed(evt);
+            }
+        });
         npcsMenu.add(criarNpcMenuItem);
 
         mostrarNpcsMenuItem.setText("Mostrar NPCs");
@@ -700,16 +1357,16 @@ public class Janela extends javax.swing.JFrame {
 
         rollDiceMenu.setText("Rolar dados");
         rollDiceMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rollDiceMenuMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rollDiceMenuMousePressed(evt);
             }
         });
         barraMenu.add(rollDiceMenu);
 
         mapMenu.setText("Mapa");
         mapMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mapMenuMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                mapMenuMousePressed(evt);
             }
         });
         barraMenu.add(mapMenu);
@@ -737,9 +1394,16 @@ public class Janela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mostrarNpcsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarNpcsMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mostrarNpcsMenuItemActionPerformed
+        //Esse método será similar ao de mostrar itens. Porém ao invés de mostrar os itens, ele mostrará os NPCs
+        //O método irá obter os NPCs do arquivo de NPCs e mostrará eles numa lista com somente uma única coluna
+        //A lista será mostrada com GridBagLayout
 
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
+        cl.show(painelPrincipal, "carregandoCard");
+        mostrarNpcs();
+        //Obtendo os NPCs do arquivo
+        cl.show(painelPrincipal, "mostrarNpcsCard");
+    }//GEN-LAST:event_mostrarNpcsMenuItemActionPerformed
     private void criarItemNomeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarItemNomeTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_criarItemNomeTextFieldActionPerformed
@@ -828,7 +1492,7 @@ public class Janela extends javax.swing.JFrame {
         
         Item item = new Item(nome, descricao, valor, Item.TIPO.valueOf(tipo), isMagico);
         CrudGenerico<Item> itemCrud = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.ITENS);
-        if(itemCrud.editar(editarItemNomeOriginal.getText(),item)) {
+        if(itemCrud.editar(editarItemId.getText(),item)) {
             JOptionPane.showMessageDialog(null, "O item foi salvo com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             this.mostrarItensMenuItemActionPerformed(null);
         } else if(itemCrud.obter(Comparavel.transformarIdentificador(nome)) != null) {
@@ -853,11 +1517,6 @@ public class Janela extends javax.swing.JFrame {
     private void editarItemMagicoCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarItemMagicoCheckboxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editarItemMagicoCheckboxActionPerformed
-
-    private void rollDiceMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rollDiceMenuMouseClicked
-        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
-        cl.show(painelPrincipal, "rollDiceCard"); 
-    }//GEN-LAST:event_rollDiceMenuMouseClicked
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
@@ -915,7 +1574,684 @@ public class Janela extends javax.swing.JFrame {
         rollDiceResultadoTextArea.setText("Soma dos dados: " + resultado + "\n\n" + somadosdados);
     }//GEN-LAST:event_rollDiceButtonActionPerformed
 
-    private void mapMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapMenuMouseClicked
+    private void addMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMapaActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileFilter(new FileNameExtensionFilter("Imagens", "jpg", "png", "webp"));
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        chooser.showOpenDialog(null);
+        final File map = chooser.getSelectedFile();
+        if(map == null) {return;}
+        String mapname = map.getAbsolutePath();
+        
+        try {
+            String out = "src/br/com/data/mapas/" + map.getName();
+            Files.copy(Path.of(mapname), Path.of(out), StandardCopyOption.REPLACE_EXISTING);
+            
+            CrudGenerico<Mapa> mc = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.MAPAS);
+            if(!mc.salvar(new Mapa(out, map.getName()))) {
+                throw new IOException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar a imagem", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        this.mapMenuMousePressed(null);
+    }//GEN-LAST:event_addMapaActionPerformed
+
+    private void criarNpcMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarNpcMenuItemActionPerformed
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
+        cl.show(painelPrincipal, "criarNpcCard");
+    }//GEN-LAST:event_criarNpcMenuItemActionPerformed
+
+    private void editarNpcAdicionarAcoesBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarNpcAdicionarAcoesBotaoActionPerformed
+        //Esse método funcionará de forma idêntica ao método de adicionar ações do painel de criar NPC
+        //Porém, ao invés de adicionar os componentes ao painel de ações, ele adicionará ao painel de ações do NPC a ser editado
+
+        //Criando a janela
+        JFrame janela = new JFrame("Adicionar Ação");
+        janela.setSize(300, 150);
+        janela.setResizable(false);
+        janela.setLocationRelativeTo(null);
+        janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        //Criando o painel
+        JPanel painel = new JPanel();
+        painel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5,5,5,5);
+
+        //Criando os JLabels
+        JLabel nomeLabel = new JLabel("Nome:");
+        JLabel valorLabel = new JLabel("Descrição:");
+
+        //Criando o JTextField
+        JTextField nomeField = new JTextField(30);
+
+        //Criando o JTextArea
+        JTextArea valorField = new JTextArea(3, 30);
+        valorField.setLineWrap(true);
+        valorField.setWrapStyleWord(true);
+
+        //Criando o JScrollPane
+        JScrollPane scroll = new JScrollPane(valorField);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        //Criando o botão
+        JButton adicionarBotao = new JButton("Adicionar");
+        adicionarBotao.addActionListener(e -> {
+                //Criando o ElementAcao
+                ElementAcao acao = new ElementAcao(nomeField.getText(), valorField.getText());
+                acao.setBotaoRemoverVisible(true);
+                acao.setBotaoRemoverActionPerformed(() -> {
+                    editarNpcAcoesPanel.remove(acao);
+                    editarNpcAcoesPanel.revalidate();
+                    editarNpcAcoesPanel.repaint();
+                });
+
+                editarNpcAcoesPanel.add(acao);
+
+                //Atualizando a janela
+                editarNpcAcoesPanel.revalidate();
+                editarNpcAcoesPanel.repaint();
+
+                //Fechando a janela
+                janela.dispose();
+            }
+        );
+
+        //Adicionando os componentes ao painel
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        painel.add(nomeLabel, gbc);
+        gbc.gridx = 1;
+        painel.add(nomeField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        painel.add(valorLabel, gbc);
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        painel.add(scroll, gbc);
+
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        painel.add(adicionarBotao, gbc);
+
+        //Adicionando o painel à janela
+        janela.add(painel);
+        janela.pack();
+
+        //Exibindo a janela
+        janela.setVisible(true);
+    }//GEN-LAST:event_editarNpcAdicionarAcoesBotaoActionPerformed
+
+    private void editarNpcAdicionarSalvamentosBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarNpcAdicionarSalvamentosBotaoActionPerformed
+        //Esse método funcionará de forma idêntica ao método de adicionar salvamentos do painel de criar NPC
+        //Porém, ao invés de adicionar os componentes ao painel de salvamentos, ele adicionará ao painel de salvamentos do NPC a ser editado
+
+        //Criando a janela
+        JFrame janela = new JFrame("Adicionar Salvamento");
+        janela.setSize(300, 150);
+        janela.setResizable(false);
+        janela.setLocationRelativeTo(null);
+        janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        //Criando o painel
+        JPanel painel = new JPanel();
+        painel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5,5,5,5);
+
+        //Criando os JLabels
+        JLabel nomeLabel = new JLabel("Atributo:");
+        JLabel valorLabel = new JLabel("Modificador:");
+
+        //Criando os JTextFields
+        JTextField nomeField = new JTextField(15);
+        JTextField valorField = new JTextField(15);
+
+        //Criando o botão
+        JButton adicionarBotao = new JButton("Adicionar");
+        adicionarBotao.addActionListener(e -> {
+                //Criando o ElementSalvamento
+                ElementAtributo salvamento = new ElementAtributo(nomeField.getText(), valorField.getText());
+                salvamento.setBotaoRemoverVisible(true);
+                salvamento.setBotaoRemoverActionPerformed(() -> {
+                        editarNpcSalvamentosPanel.remove(salvamento);
+                        editarNpcSalvamentosPanel.revalidate();
+                        editarNpcSalvamentosPanel.repaint();
+                    }
+                );
+                editarNpcSalvamentosPanel.add(salvamento);
+
+                //Atualizando a janela
+                editarNpcSalvamentosPanel.revalidate();
+                editarNpcSalvamentosPanel.repaint();
+
+                //Fechando a janela
+                janela.dispose();
+            }
+        );
+
+        //Adicionando os componentes ao painel
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        painel.add(nomeLabel, gbc);
+        gbc.gridx = 1;
+        painel.add(nomeField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        painel.add(valorLabel, gbc);
+        gbc.gridx = 1;
+        painel.add(valorField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        painel.add(adicionarBotao, gbc);
+
+        //Adicionando o painel à janela
+        janela.add(painel);
+
+        //Exibindo a janela
+        janela.setVisible(true);
+    }//GEN-LAST:event_editarNpcAdicionarSalvamentosBotaoActionPerformed
+
+    private void editarNpcAdicionarPericiasBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarNpcAdicionarPericiasBotaoActionPerformed
+        //Esse método funcionará de forma idêntica ao método de adicionar perícia do painel de criar NPC
+        //e também ao método de adicionar salvamento no painel de editar NPC
+        //Porém, ao invés de adicionar os componentes ao painel de perícia, ele adicionará ao painel de perícia do NPC a ser editado
+
+        //Criando a janela
+        JFrame janela = new JFrame("Adicionar Perícia");
+        janela.setSize(300, 150);
+        janela.setResizable(false);
+        janela.setLocationRelativeTo(null);
+        janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        //Criando o painel
+        JPanel painel = new JPanel();
+        painel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5,5,5,5);
+
+        //Criando os JLabels
+        JLabel nomeLabel = new JLabel("Perícia:");
+        JLabel valorLabel = new JLabel("Modificador:");
+
+        //Criando os JTextFields
+        JTextField nomeField = new JTextField(15);
+        JTextField valorField = new JTextField(15);
+
+        //Criando o botão
+        JButton adicionarBotao = new JButton("Adicionar");
+        adicionarBotao.addActionListener(e -> {
+                //Criando o ElementPericia
+                ElementAtributo pericia = new ElementAtributo(nomeField.getText(), valorField.getText());
+                pericia.setBotaoRemoverVisible(true);
+                pericia.setBotaoRemoverActionPerformed(() -> {
+                    editarNpcPericiasPanel.remove(pericia);
+                    editarNpcPericiasPanel.revalidate();
+                    editarNpcPericiasPanel.repaint();
+                });
+                editarNpcPericiasPanel.add(pericia);
+
+                //Atualizando a janela
+                editarNpcPericiasPanel.revalidate();
+                editarNpcPericiasPanel.repaint();
+
+                //Fechando a janela
+                janela.dispose();
+            }
+        );
+
+        //Adicionando os componentes ao painel
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        painel.add(nomeLabel, gbc);
+        gbc.gridx = 1;
+        painel.add(nomeField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        painel.add(valorLabel, gbc);
+        gbc.gridx = 1;
+        painel.add(valorField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        painel.add(adicionarBotao, gbc);
+
+        //Adicionando o painel à janela
+        janela.add(painel);
+
+        //Exibindo a janela
+        janela.setVisible(true);
+    }//GEN-LAST:event_editarNpcAdicionarPericiasBotaoActionPerformed
+
+    private void editarNpcSalvarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarNpcSalvarBotaoActionPerformed
+        //Esse método funcionará de forma idêntica ao método de salvar do painel de criar NPC
+        //Porém, ao invés de criar um novo NPC, ele irá editar o NPC selecionado
+        String nomeOriginal = editarNpcId.getText();
+
+
+        //Declarando as variáveis necessárias para a criação de um NpcDnd
+        String nome, alinhamento;
+        double classeDificuldade, hitpoints, velocidade;
+        int classeArmadura, forca, destreza, constituicao, inteligencia, sabedoria, carisma;
+
+        //Checando se os campos estão preenchidos
+        try{
+            nome = editarNpcNomeTextField.getText();
+            alinhamento = editarNpcAlinhamentoComboBox.getSelectedItem().toString();
+
+            classeDificuldade = Double.parseDouble(editarNpcClasseDificuldadeTextField.getText());
+            hitpoints = Double.parseDouble(editarNpcHitpointsTextField.getText());
+            velocidade = Double.parseDouble(editarNpcVelocidadeTextField.getText());
+
+            classeArmadura = Integer.parseInt(editarNpcClasseArmaduraTextField.getText());
+            forca = Integer.parseInt(editarNpcForcaSpinner.getValue().toString());
+            destreza = Integer.parseInt(editarNpcDestrezaSpinner.getValue().toString());
+            constituicao = Integer.parseInt(editarNpcConstituicaoSpinner.getValue().toString());
+            inteligencia = Integer.parseInt(editarNpcInteligenciaSpinner.getValue().toString());
+            sabedoria = Integer.parseInt(editarNpcSabedoriaSpinner.getValue().toString());
+            carisma = Integer.parseInt(editarNpcCarismaSpinner.getValue().toString());
+
+            if(nome.isEmpty() || alinhamento.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch(NumberFormatException|NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Verifique os valores inseridos", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        //Criando o NpcDnd
+        NpcDnd npc = new NpcDnd(nome, classeDificuldade, alinhamento,
+                classeArmadura, hitpoints, velocidade,
+                forca, destreza, constituicao, inteligencia, sabedoria, carisma);
+
+        //Adicionando as ações
+        for(Component c : editarNpcAcoesPanel.getComponents()){
+            ElementAcao acao = (ElementAcao) c;
+            npc.adicionarAcao(acao.getNome(), acao.getDescricao());
+        }
+
+        //Adicionando os salvamentos
+        for(Component c : editarNpcSalvamentosPanel.getComponents()){
+            ElementAtributo salvamento = (ElementAtributo) c;
+            npc.adicionarSalvamento(salvamento.getNome(), salvamento.getModificador());
+        }
+
+        //Adicionando as perícias
+        for(Component c : editarNpcPericiasPanel.getComponents()){
+            ElementAtributo pericia = (ElementAtributo) c;
+            npc.adicionarPericia(pericia.getNome(), pericia.getModificador());
+        }
+
+        //Editando o NPC
+        CrudGenerico<NpcDnd> crud = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.NPCS);
+        if(crud.editar(nomeOriginal, npc)){
+            JOptionPane.showMessageDialog(null, "NPC salvo com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+            this.mostrarNpcsMenuItemActionPerformed(null);
+
+        } else{
+            JOptionPane.showMessageDialog(null, "Erro ao salvar o NPC", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_editarNpcSalvarBotaoActionPerformed
+
+    private void npcAdicionarPericiasBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_npcAdicionarPericiasBotaoActionPerformed
+        //Esse método é muito parecido com o método de adicionar salvamentos.
+        //A diferença é que esse método adicionará um ElementAtributo no painel de perícia.
+
+        //Criando a janela
+        JFrame janela = new JFrame("Adicionar Perícia");
+        janela.setSize(300, 150);
+        janela.setResizable(false);
+        janela.setLocationRelativeTo(null);
+        janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        //Criando o painel
+        JPanel painel = new JPanel();
+        painel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5,5,5,5);
+
+        //Criando os JLabels
+        JLabel nomeLabel = new JLabel("Nome:");
+        JLabel valorLabel = new JLabel("Modificador:");
+
+        //Criando os JTextFields
+        JTextField nomeField = new JTextField(10);
+        JTextField valorField = new JTextField(10);
+
+        //Criando o botão
+        JButton adicionarBotao = new JButton("Adicionar");
+        adicionarBotao.addActionListener((ActionEvent e) -> {
+            //Primeiro, checa se os campos não estão vazios
+            if(nomeField.getText().isEmpty() || valorField.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            ElementAtributo pericia = new ElementAtributo(nomeField.getText(), valorField.getText());
+            pericia.setBotaoRemoverVisible(true);
+            pericia.setBotaoRemoverActionPerformed(() -> {
+                npcPericiasPanel.remove(pericia);
+                npcPericiasPanel.revalidate();
+                npcPericiasPanel.repaint();
+            });
+            npcPericiasPanel.add(pericia);
+
+            npcPericiasPanel.revalidate();
+            npcPericiasPanel.repaint();
+
+            janela.dispose();
+        });
+
+        //Adicionando os componentes ao painel
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        painel.add(nomeLabel, gbc);
+        gbc.gridx = 1;
+        painel.add(nomeField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        painel.add(valorLabel, gbc);
+        gbc.gridx = 1;
+        painel.add(valorField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        painel.add(adicionarBotao, gbc);
+
+        //Adicionando o painel à janela
+        janela.add(painel);
+
+        //Mostrando a janela
+        janela.setVisible(true);
+    }//GEN-LAST:event_npcAdicionarPericiasBotaoActionPerformed
+
+    private void npcAdicionarSalvamentosBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_npcAdicionarSalvamentosBotaoActionPerformed
+        //Quando esse método é chamado, ele abrirá uma nova janela que perguntará o nome do salvamento
+        //e o valor dele.
+        //Essa nova janela terá dois JTextField, um para o nome e outro para o valor.
+        //Também terá dois JLabel, um para o nome e outro para o valor.
+        //Também terá um JButton, que será o botão de adicionar.
+        //Então criará um novo ElementAtributo com os dados inseridos e adicionará
+        //esse ElementAtributo no painel de salvamentos.
+
+        //Criando a janela
+        JFrame janela = new JFrame("Adicionar Salvamento");
+        janela.setSize(300, 150);
+        janela.setResizable(false);
+        janela.setLocationRelativeTo(null);
+        janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        //Criando o painel
+        JPanel painel = new JPanel();
+        painel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5,5,5,5);
+
+        //Criando os JLabels
+        JLabel nomeLabel = new JLabel("Nome:");
+        JLabel valorLabel = new JLabel("Modificador:");
+
+        //Criando os JTextFields
+        JTextField nomeField = new JTextField(10);
+        JTextField valorField = new JTextField(10);
+
+        //Criando o botão
+        JButton adicionarBotao = new JButton("Adicionar");
+        adicionarBotao.addActionListener((ActionEvent e) -> {
+            //Primeiro, checa se os campos não estão vazios
+            if(nomeField.getText().isEmpty() || valorField.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            ElementAtributo salvamento = new ElementAtributo(nomeField.getText(), valorField.getText());
+            salvamento.setBotaoRemoverVisible(true);
+            salvamento.setBotaoRemoverActionPerformed(() -> {
+                npcSalvamentosPanel.remove(salvamento);
+                npcSalvamentosPanel.revalidate();
+                npcSalvamentosPanel.repaint();
+            });
+            npcSalvamentosPanel.add(salvamento);
+
+            npcSalvamentosPanel.revalidate();
+            npcSalvamentosPanel.repaint();
+
+            janela.dispose();
+        });
+
+        //Adicionando os componentes ao painel
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        painel.add(nomeLabel, gbc);
+        gbc.gridx = 1;
+        painel.add(nomeField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        painel.add(valorLabel, gbc);
+        gbc.gridx = 1;
+        painel.add(valorField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        painel.add(adicionarBotao, gbc);
+
+        //Adicionando o painel à janela
+        janela.add(painel);
+
+        //Mostrando a janela
+        janela.setVisible(true);
+    }//GEN-LAST:event_npcAdicionarSalvamentosBotaoActionPerformed
+
+    private void npcAdicionarAcoesBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_npcAdicionarAcoesBotaoActionPerformed
+        //Esse método funciona de forma muito parecida com os métodos de adicionar salvamentos e perícia.
+        //A diferença é que esse método adicionará um ElementAcao no painel de ações e
+        //a descrição da ação será adicionada em um JTextArea que estará contida
+        //dentro de um JScrollPane que não terá rolagem horizontal.
+
+        //Criando a janela
+        JFrame janela = new JFrame("Adicionar Ação");
+        janela.setSize(300, 150);
+        janela.setResizable(false);
+        janela.setLocationRelativeTo(null);
+        janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        //Criando o painel
+        JPanel painel = new JPanel();
+        painel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5,5,5,5);
+
+        //Criando os JLabels
+        JLabel nomeLabel = new JLabel("Nome:");
+        JLabel valorLabel = new JLabel("Descrição:");
+
+        //Criando o JTextField
+        JTextField nomeField = new JTextField(20);
+
+        //Criando o JTextArea
+        JTextArea valorField = new JTextArea(3, 20);
+        valorField.setLineWrap(true);
+        valorField.setWrapStyleWord(true);
+
+        //Criando o JScrollPane
+        JScrollPane scroll = new JScrollPane(valorField);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        //Criando o botão
+        JButton adicionarBotao = new JButton("Adicionar");
+        adicionarBotao.addActionListener((ActionEvent e) -> {
+            //Primeiro, checa se os campos não estão vazios
+            if(nomeField.getText().isEmpty() || valorField.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            ElementAcao acao = new ElementAcao(nomeField.getText(), valorField.getText());
+            acao.setBotaoRemoverVisible(true);
+            acao.setBotaoRemoverActionPerformed(() -> {
+                npcAcoesPanel.remove(acao);
+                npcAcoesPanel.revalidate();
+                npcAcoesPanel.repaint();
+            });
+            npcAcoesPanel.add(acao);
+
+            npcAcoesPanel.revalidate();
+            npcAcoesPanel.repaint();
+
+            janela.dispose();
+        });
+
+        //Adicionando os componentes ao painel
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        painel.add(nomeLabel, gbc);
+        gbc.gridx = 1;
+        painel.add(nomeField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        painel.add(valorLabel, gbc);
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        painel.add(scroll, gbc);
+
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        painel.add(adicionarBotao, gbc);
+
+        //Adicionando o painel à janela
+        janela.add(painel);
+        janela.pack();
+
+        //Mostrando a janela
+        janela.setVisible(true);
+    }//GEN-LAST:event_npcAdicionarAcoesBotaoActionPerformed
+
+    private void criarNpcSalvarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarNpcSalvarBotaoActionPerformed
+        //Esse método funcionará de forma similar ao método de salvar item e salvar mapa.
+        //O método usará o método salvar de CrudGenerico para salvar um NPCDnd em um arquivo .json
+        //O endereço do arquivo está localizado na variável NPCS em CrudGenerico
+        //Também é necessário checar se todos os JTextfield estão preenchidos
+
+        //Declarando os campos necessários para criar um NpcDnd
+        String nome, alinhamento;
+        double classeDificuldade, hitpoints, velocidade;
+        int classeArmadura, forca, destreza, constituicao, inteligencia, sabedoria, carisma;
+
+        //Checando se os campos estão preenchidos
+        try{
+            nome = npcNomeTextField.getText();
+            alinhamento = npcAlinhamentoComboBox.getSelectedItem().toString();
+
+            classeDificuldade = Double.parseDouble(npcClasseDificuldadeTextField.getText());
+            hitpoints = Double.parseDouble(npcHitpointsTextField.getText());
+            velocidade = Double.parseDouble(npcVelocidadeTextField.getText());
+
+            classeArmadura = Integer.parseInt(npcClasseArmaduraTextField.getText());
+            forca = Integer.parseInt(npcForcaSpinner.getValue().toString());
+            destreza = Integer.parseInt(npcDestrezaSpinner.getValue().toString());
+            constituicao = Integer.parseInt(npcConstituicaoSpinner.getValue().toString());
+            inteligencia = Integer.parseInt(npcInteligenciaSpinner.getValue().toString());
+            sabedoria = Integer.parseInt(npcSabedoriaSpinner.getValue().toString());
+            carisma = Integer.parseInt(npcCarismaSpinner.getValue().toString());
+
+            if(nome.isEmpty() || alinhamento.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch(NumberFormatException|NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Verifique os valores inseridos", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        //Criando o NpcDnd
+        NpcDnd npc = new NpcDnd(nome, classeDificuldade, alinhamento,
+            classeArmadura, hitpoints, velocidade,
+            forca, destreza, constituicao, inteligencia, sabedoria, carisma);
+
+        //Adicionando as ações
+        for(Component c : npcAcoesPanel.getComponents()){
+            ElementAcao acao = (ElementAcao) c;
+            npc.adicionarAcao(acao.getNome(), acao.getDescricao());
+        }
+
+        //Adicionando os salvamentos
+        for(Component c : npcSalvamentosPanel.getComponents()){
+            ElementAtributo salvamento = (ElementAtributo) c;
+            npc.adicionarSalvamento(salvamento.getNome(), salvamento.getModificador());
+        }
+
+        //Adicionando as perícias
+        for(Component c : npcPericiasPanel.getComponents()){
+            ElementAtributo pericia = (ElementAtributo) c;
+            npc.adicionarPericia(pericia.getNome(), pericia.getModificador());
+        }
+
+        //Salvando o NPC
+        CrudGenerico<NpcDnd> crud = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.NPCS);
+        if(crud.salvar(npc)){
+            JOptionPane.showMessageDialog(null, "NPC salvo com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+            npcNomeTextField.setText("");
+            npcAlinhamentoComboBox.setSelectedIndex(0);
+            npcClasseDificuldadeTextField.setText("");
+            npcHitpointsTextField.setText("");
+            npcVelocidadeTextField.setText("");
+            npcClasseArmaduraTextField.setText("");
+            npcForcaSpinner.setValue(0);
+            npcDestrezaSpinner.setValue(0);
+            npcConstituicaoSpinner.setValue(0);
+            npcInteligenciaSpinner.setValue(0);
+            npcSabedoriaSpinner.setValue(0);
+            npcCarismaSpinner.setValue(0);
+
+            npcAcoesPanel.removeAll();
+            npcAcoesPanel.revalidate();
+            npcAcoesPanel.repaint();
+
+            npcSalvamentosPanel.removeAll();
+            npcSalvamentosPanel.revalidate();
+            npcSalvamentosPanel.repaint();
+
+            npcPericiasPanel.removeAll();
+            npcPericiasPanel.revalidate();
+            npcPericiasPanel.repaint();
+        } else if(crud.obter(npc.getNome()) != null){
+            JOptionPane.showMessageDialog(null, "Já existe um NPC com esse nome", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else{
+            JOptionPane.showMessageDialog(null, "Erro ao salvar o NPC", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_criarNpcSalvarBotaoActionPerformed
+
+    private void rollDiceMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rollDiceMenuMousePressed
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
+        cl.show(painelPrincipal, "rollDiceCard");
+    }//GEN-LAST:event_rollDiceMenuMousePressed
+
+    private void mapMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapMenuMousePressed
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
         cl.show(painelPrincipal, "carregandoCard");
         
@@ -941,30 +2277,12 @@ public class Janela extends javax.swing.JFrame {
         }
         
         cl.show(painelPrincipal, "mapCard");
-    }//GEN-LAST:event_mapMenuMouseClicked
+    }//GEN-LAST:event_mapMenuMousePressed
 
-    private void addMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMapaActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        final File map = chooser.getSelectedFile();
-        String mapname = map.getAbsolutePath();
-        
-        try {
-            String out = "src/br/com/data/mapas/" + map.getName();
-            Files.copy(Path.of(mapname), Path.of(out), StandardCopyOption.REPLACE_EXISTING);
-            
-            CrudGenerico<Mapa> mc = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.MAPAS);
-            if(!mc.salvar(new Mapa(out, map.getName()))) {
-                throw new IOException();
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Não foi possível salvar a imagem", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        this.mapMenuMouseClicked(null);
-    }//GEN-LAST:event_addMapaActionPerformed
+    private void inicioMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inicioMenuMousePressed
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
+        cl.show(painelPrincipal, "inicioCard");
+    }//GEN-LAST:event_inicioMenuMousePressed
 
     /**
      * @param args the command line arguments
@@ -1004,6 +2322,8 @@ public class Janela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMapa;
     private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JLabel boasVindasLabel;
+    private javax.swing.JLabel capaLabel;
     private javax.swing.JLabel carregandoLabel;
     private javax.swing.JPanel carregandoPanel;
     private javax.swing.JLabel criarItemDescricaoLabel;
@@ -1020,14 +2340,18 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel criarItemTituloLabel;
     private javax.swing.JLabel criarItemValorLabel;
     private javax.swing.JTextField criarItemValorTextField;
+    private javax.swing.JPanel criarNpcMainPanel;
     private javax.swing.JMenuItem criarNpcMenuItem;
     private javax.swing.JPanel criarNpcPanel;
+    private javax.swing.JButton criarNpcSalvarBotao;
+    private javax.swing.JLabel criarNpcTituloLabel;
+    private javax.swing.JSeparator criarNpcTituloSeparator;
     private javax.swing.JLabel editarItemDescricaoLabel;
     private javax.swing.JScrollPane editarItemDescricaoScroolpane;
     private javax.swing.JTextArea editarItemDescricaoTextArea;
+    private javax.swing.JLabel editarItemId;
     private javax.swing.JCheckBox editarItemMagicoCheckbox;
     private javax.swing.JLabel editarItemNomeLabel;
-    private javax.swing.JLabel editarItemNomeOriginal;
     private javax.swing.JTextField editarItemNomeTextField;
     private javax.swing.JPanel editarItemPanel;
     private javax.swing.JSeparator editarItemRodapeSeparator;
@@ -1038,10 +2362,51 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JSeparator editarItemTituloSeparator;
     private javax.swing.JLabel editarItemValorLabel;
     private javax.swing.JTextField editarItemValorTextField;
-    private javax.swing.JPanel homePanel;
+    private javax.swing.JLabel editarNpcAcoesLabel;
+    private javax.swing.JPanel editarNpcAcoesPanel;
+    private javax.swing.JScrollPane editarNpcAcoesScroolpane;
+    private javax.swing.JButton editarNpcAdicionarAcoesBotao;
+    private javax.swing.JButton editarNpcAdicionarPericiasBotao;
+    private javax.swing.JButton editarNpcAdicionarSalvamentosBotao;
+    private javax.swing.JComboBox<String> editarNpcAlinhamentoComboBox;
+    private javax.swing.JLabel editarNpcAlinhamentoLabel;
+    private javax.swing.JLabel editarNpcCarismaLabel;
+    private javax.swing.JSpinner editarNpcCarismaSpinner;
+    private javax.swing.JLabel editarNpcClasseArmaduraLabel;
+    private javax.swing.JTextField editarNpcClasseArmaduraTextField;
+    private javax.swing.JLabel editarNpcClasseDificuldadeLabel;
+    private javax.swing.JTextField editarNpcClasseDificuldadeTextField;
+    private javax.swing.JLabel editarNpcConstituicaoLabel;
+    private javax.swing.JSpinner editarNpcConstituicaoSpinner;
+    private javax.swing.JLabel editarNpcDestrezaLabel;
+    private javax.swing.JSpinner editarNpcDestrezaSpinner;
+    private javax.swing.JLabel editarNpcForcaLabel;
+    private javax.swing.JSpinner editarNpcForcaSpinner;
+    private javax.swing.JLabel editarNpcHitpointsLabel;
+    private javax.swing.JTextField editarNpcHitpointsTextField;
+    private javax.swing.JLabel editarNpcId;
+    private javax.swing.JLabel editarNpcInteligenciaLabel;
+    private javax.swing.JSpinner editarNpcInteligenciaSpinner;
+    private javax.swing.JPanel editarNpcMainPanel;
+    private javax.swing.JLabel editarNpcNomeLabel;
+    private javax.swing.JTextField editarNpcNomeTextField;
+    private javax.swing.JPanel editarNpcPanel;
+    private javax.swing.JLabel editarNpcPericiasLabel;
+    private javax.swing.JPanel editarNpcPericiasPanel;
+    private javax.swing.JScrollPane editarNpcPericiasScroolpane;
+    private javax.swing.JLabel editarNpcSabedoriaLabel;
+    private javax.swing.JSpinner editarNpcSabedoriaSpinner;
+    private javax.swing.JLabel editarNpcSalvamentosLabel;
+    private javax.swing.JPanel editarNpcSalvamentosPanel;
+    private javax.swing.JScrollPane editarNpcSalvamentosScroolpane;
+    private javax.swing.JButton editarNpcSalvarBotao;
+    private javax.swing.JLabel editarNpcTituloLabel;
+    private javax.swing.JSeparator editarNpcTituloSeparator1;
+    private javax.swing.JLabel editarNpcVelocidadeLabel;
+    private javax.swing.JTextField editarNpcVelocidadeTextField;
+    private javax.swing.JMenu inicioMenu;
+    private javax.swing.JPanel inicioPanel;
     private javax.swing.JMenu itensMenu;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1057,13 +2422,54 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JPanel listaMapas;
     private javax.swing.JMenu mapMenu;
     private javax.swing.JPanel mapaPanel;
-    private javax.swing.JPanel mostrarItensListaItensPanel;
-    private javax.swing.JScrollPane mostrarItensListaItensScrollpane;
+    private javax.swing.JPanel mostrarItensListaPanel;
+    private javax.swing.JScrollPane mostrarItensListaScrollpane;
     private javax.swing.JMenuItem mostrarItensMenuItem;
     private javax.swing.JPanel mostrarItensPanel;
     private javax.swing.JLabel mostrarItensTituloLabel;
     private javax.swing.JSeparator mostrarItensTituloSeparator;
+    private javax.swing.JPanel mostrarNpcsListaPanel;
+    private javax.swing.JScrollPane mostrarNpcsListaScrollPane;
     private javax.swing.JMenuItem mostrarNpcsMenuItem;
+    private javax.swing.JPanel mostrarNpcsPanel;
+    private javax.swing.JLabel mostrarNpcsTituloLabel;
+    private javax.swing.JSeparator mostrarNpcsTituloSeparator;
+    private javax.swing.JLabel npcAcoesLabel;
+    private javax.swing.JPanel npcAcoesPanel;
+    private javax.swing.JScrollPane npcAcoesScroolpane;
+    private javax.swing.JButton npcAdicionarAcoesBotao;
+    private javax.swing.JButton npcAdicionarPericiasBotao;
+    private javax.swing.JButton npcAdicionarSalvamentosBotao;
+    private javax.swing.JComboBox<String> npcAlinhamentoComboBox;
+    private javax.swing.JLabel npcAlinhamentoLabel;
+    private javax.swing.JLabel npcCarismaLabel;
+    private javax.swing.JSpinner npcCarismaSpinner;
+    private javax.swing.JLabel npcClasseArmaduraLabel;
+    private javax.swing.JTextField npcClasseArmaduraTextField;
+    private javax.swing.JLabel npcClasseDificuldadeLabel;
+    private javax.swing.JTextField npcClasseDificuldadeTextField;
+    private javax.swing.JLabel npcConstituicaoLabel;
+    private javax.swing.JSpinner npcConstituicaoSpinner;
+    private javax.swing.JLabel npcDestrezaLabel;
+    private javax.swing.JSpinner npcDestrezaSpinner;
+    private javax.swing.JLabel npcForcaLabel;
+    private javax.swing.JSpinner npcForcaSpinner;
+    private javax.swing.JLabel npcHitpointsLabel;
+    private javax.swing.JTextField npcHitpointsTextField;
+    private javax.swing.JLabel npcInteligenciaLabel;
+    private javax.swing.JSpinner npcInteligenciaSpinner;
+    private javax.swing.JLabel npcNomeLabel;
+    private javax.swing.JTextField npcNomeTextField;
+    private javax.swing.JLabel npcPericiasLabel;
+    private javax.swing.JPanel npcPericiasPanel;
+    private javax.swing.JScrollPane npcPericiasScroolpane;
+    private javax.swing.JLabel npcSabedoriaLabel;
+    private javax.swing.JSpinner npcSabedoriaSpinner;
+    private javax.swing.JLabel npcSalvamentosLabel;
+    private javax.swing.JPanel npcSalvamentosPanel;
+    private javax.swing.JScrollPane npcSalvamentosScroolpane;
+    private javax.swing.JLabel npcVelocidadeLabel;
+    private javax.swing.JTextField npcVelocidadeTextField;
     private javax.swing.JMenu npcsMenu;
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JButton rollDiceButton;
@@ -1079,16 +2485,33 @@ public class Janela extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void customInitComponents() {
-        //Tipos de item
+        //Tipos de item na combobox
         for(Item.TIPO tipo: Item.TIPO.values()){
             criarItemTipoComboBox.addItem(tipo.toString());
             editarItemTipoComboBox.addItem(tipo.toString());
         }
+
+        //Armazenar os tipos de alinhamento definidos na classe NpcDnd na combobox
+        for(NpcDnd.ALINHAMENTO alinhamento: NpcDnd.ALINHAMENTO.values()){
+            npcAlinhamentoComboBox.addItem(alinhamento.toString());
+            editarNpcAlinhamentoComboBox.addItem(alinhamento.toString());
+        }
+        
+        //Inserir uma imagem centralizada no label capaLabel
+        try {
+            BufferedImage capa = ImageIO.read(new File("src/br/com/data/capa.png"));
+            capaLabel.setIcon(new ImageIcon(capa));
+            capaLabel.setHorizontalAlignment(JLabel.CENTER);
+            capaLabel.setVerticalAlignment(JLabel.CENTER);
+        } catch (IOException e) {
+            System.out.println("Erro ao carregar imagem: " + e.getMessage());
+        }
+
     }
 
     private void mostrarItens() {
-        mostrarItensListaItensPanel.setLayout(new GridBagLayout());
-        mostrarItensListaItensPanel.removeAll();
+        mostrarItensListaPanel.setLayout(new GridBagLayout());
+        mostrarItensListaPanel.removeAll();
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         
@@ -1105,21 +2528,30 @@ public class Janela extends javax.swing.JFrame {
                 
                 gbc.gridx = j;
                 gbc.gridy = i;
-                mostrarItensListaItensPanel.add(displayItem, gbc);
+                mostrarItensListaPanel.add(displayItem, gbc);
             }
         }
     }
     
     private void editarItem(Item item) {
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
+
+        int indexTipo = 0;
+        for(int i=0; i< editarItemTipoComboBox.getItemCount(); i++) {
+            if(editarItemTipoComboBox.getItemAt(i).equals(item.getTipo().toString())) {
+                indexTipo = i;
+                break;
+            }
+        }
         
         editarItemNomeTextField.setText(item.getNome());
         editarItemValorTextField.setText(Double.toString(item.getValor()));
-        editarItemTipoComboBox.setSelectedIndex(0);
+        editarItemTipoComboBox.setSelectedIndex(indexTipo);
         editarItemMagicoCheckbox.setSelected(item.isMagico());
         editarItemDescricaoTextArea.setText(item.getDescricao());
-        editarItemNomeOriginal.setText(item.getNome());
-        editarItemNomeOriginal.setVisible(false);
+        
+        editarItemId.setText(item.getIdentificador());
+        editarItemId.setVisible(false);
         
         cl.show(painelPrincipal, "editarItemCard");
     }
@@ -1132,7 +2564,7 @@ public class Janela extends javax.swing.JFrame {
         
         CrudGenerico<Item> itemCRUD = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.ITENS);
 
-        if(itemCRUD.deletar(Comparavel.transformarIdentificador(item.getNome()))) {
+        if(itemCRUD.deletar(item.getIdentificador())) {
             JOptionPane.showMessageDialog(null, "O item foi deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             this.mostrarItensMenuItemActionPerformed(null);
         } else {
@@ -1148,12 +2580,119 @@ public class Janela extends javax.swing.JFrame {
         
         CrudGenerico<Item> mc = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.MAPAS);
 
-        if(mc.deletar(Comparavel.transformarIdentificador(mapa.getNome()))) {
+        if(mc.deletar(mapa.getIdentificador())) {
             JOptionPane.showMessageDialog(null, "O mapa foi deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            this.mapMenuMouseClicked(null);
+            this.mapMenuMousePressed(null);
         } else {
             JOptionPane.showMessageDialog(null, "Não foi possível deletar o item.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
+    private void mostrarNpcs() {
+        mostrarNpcsListaPanel.setLayout(new GridBagLayout());
+        mostrarNpcsListaPanel.removeAll();
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.gridx = 0;
+
+        CrudGenerico<NpcDnd> npcCRUD = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.NPCS);
+        List<NpcDnd> npcs = npcCRUD.obterTodos();
+
+        for(int i = 0;  i < npcs.size(); i++) {
+            var npc = npcs.get(i);
+
+            DisplayNpc displayNpc = new DisplayNpc(npc);
+            displayNpc.setBotaoEditarActionPerformed(() -> this.editarNpc(npc));
+            displayNpc.setBotaoRemoverActionPerformed(() -> this.removerNpc(npc));
+
+            gbc.gridy = i;
+
+            mostrarNpcsListaPanel.add(displayNpc, gbc);
+        }
+    }
+
+    private void editarNpc(NpcDnd npc) {
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
+
+        int indexAlinhamento = 0;
+        for(int i=0; i< editarNpcAlinhamentoComboBox.getItemCount(); i++) {
+            if(editarNpcAlinhamentoComboBox.getItemAt(i).equals(npc.getAlinhamento())) {
+                indexAlinhamento = i;
+                break;
+            }
+        }
+
+        editarNpcNomeTextField.setText(npc.getNome());
+        editarNpcAlinhamentoComboBox.setSelectedIndex(indexAlinhamento);
+        editarNpcClasseDificuldadeTextField.setText(Double.toString(npc.getClasseDificuldade()));
+        editarNpcVelocidadeTextField.setText(Double.toString(npc.getVelocidade()));
+        editarNpcHitpointsTextField.setText(Double.toString(npc.getHitPoints()));
+        editarNpcClasseArmaduraTextField.setText(Integer.toString(npc.getClasseArmadura()));
+
+        editarNpcForcaSpinner.setValue(npc.getForca());
+        editarNpcDestrezaSpinner.setValue(npc.getDestreza());
+        editarNpcConstituicaoSpinner.setValue(npc.getConstituicao());
+        editarNpcInteligenciaSpinner.setValue(npc.getInteligencia());
+        editarNpcSabedoriaSpinner.setValue(npc.getSabedoria());
+        editarNpcCarismaSpinner.setValue(npc.getCarisma());
+        
+        editarNpcAcoesPanel.removeAll();
+        for (Acao acao : npc.getAcoes()) {
+            ElementAcao elementAcao = new ElementAcao(acao.getNome(), acao.getDescricao());
+            elementAcao.setBotaoRemoverVisible(true);
+            elementAcao.setBotaoRemoverActionPerformed(() -> {
+                editarNpcAcoesPanel.remove(elementAcao);
+                editarNpcAcoesPanel.revalidate();
+                editarNpcAcoesPanel.repaint();
+            });
+            editarNpcAcoesPanel.add(elementAcao);
+        }
+
+        editarNpcSalvamentosPanel.removeAll();
+        for(SalvamentoDnd salvamento: npc.getSalvamentos()) {
+            ElementAtributo elementSalvamento = new ElementAtributo(salvamento.getAtributo(), salvamento.getModificador());
+            elementSalvamento.setBotaoRemoverVisible(true);
+            elementSalvamento.setBotaoRemoverActionPerformed(() -> {
+                editarNpcSalvamentosPanel.remove(elementSalvamento);
+                editarNpcSalvamentosPanel.revalidate();
+                editarNpcSalvamentosPanel.repaint();
+            });
+            editarNpcSalvamentosPanel.add(elementSalvamento);
+        }
+
+        editarNpcPericiasPanel.removeAll();
+        for(PericiaDnd pericia: npc.getPericias()) {
+            ElementAtributo elementPericia = new ElementAtributo(pericia.getPericia(), pericia.getModificador());
+            elementPericia.setBotaoRemoverVisible(true);
+            elementPericia.setBotaoRemoverActionPerformed(() -> {
+                editarNpcPericiasPanel.remove(elementPericia);
+                editarNpcPericiasPanel.revalidate();
+                editarNpcPericiasPanel.repaint();
+            });
+            editarNpcPericiasPanel.add(elementPericia);
+        }
+
+        editarNpcId.setText(npc.getIdentificador());
+        editarNpcId.setVisible(false);
+
+        cl.show(painelPrincipal, "editarNpcCard");
+    }
+
+    private void removerNpc(NpcDnd npc) {
+        int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o NPC \"" + npc.getNome() + "\"?", "",
+                JOptionPane.YES_NO_OPTION);
+
+        if(resposta != 0) {return;}
+
+        CrudGenerico<NpcDnd> npcCRUD = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.NPCS);
+
+        if(npcCRUD.deletar(npc.getIdentificador())) {
+            JOptionPane.showMessageDialog(null, "O NPC foi deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            this.mostrarNpcsMenuItemActionPerformed(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "Não foi possível deletar o NPC.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 }

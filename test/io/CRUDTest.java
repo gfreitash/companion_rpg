@@ -51,7 +51,7 @@ public class CRUDTest {
         System.out.println(new CrudGenerico<>(tipoLista, CrudGenerico.ITENS).salvar(espada));
     }
 
-    //editarGeneric() testa o método editar() da classe GenericCRUD com o genérico sendo um Item
+    //editarGeneric() testa o método  //editarGeneric() editar() da classe GenericCRUD com o genérico sendo um Item
     @Test
     public void editarGeneric() {
         TypeToken<ArrayList<Item>> tipoLista = new TypeToken<>() {};

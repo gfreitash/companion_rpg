@@ -7,6 +7,7 @@ package br.com.classes;
 import br.com.interfaces.Comparavel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,19 +16,23 @@ import java.util.Objects;
  * @author gfreitash
  */
 public class NpcDnd extends Comparavel{
+    public enum ALINHAMENTO {
+        LAWFUL_GOOD("Lawful Good"), NEUTRAL_GOOD("Neutral Good"), CHAOTIC_GOOD("Chaotic Good"),
+        LAWFUL_NEUTRAL("Lawful Neutral"), TRUE_NEUTRAL("True Neutral"), CHAOTIC_NEUTRAL("Chaotic Neutral"),
+        LAWFUL_EVIL("Lawful Evil"), NEUTRAL_EVIL("Neutral Evil"), CHAOTIC_EVIL("Chaotic Evil");
+        private final String alinhamento;
+        ALINHAMENTO(String alinhamento) {
+            this.alinhamento = alinhamento;
+        }
+
+        @Override
+        public String toString() {
+            return alinhamento;
+        }
+    }
     private String nome;
     private double classeDificuldade;
     private String alinhamento;
-    
-    public static final String LG = "Lawful Good";
-    public static final String LN = "Lawful Neutral";
-    public static final String LE = "Lawful Evil";
-    public static final String NG = "Neutral Good";
-    public static final String TG = "True Neutral";
-    public static final String NE = "Neutral Evil";
-    public static final String CG = "Chaotic Good";
-    public static final String CN = "Chaotic Neutral";
-    public static final String CE = "Chaotic Evil";
 
     private int classeArmadura;
     private double hitPoints;
@@ -87,9 +92,15 @@ public class NpcDnd extends Comparavel{
 
     @Override
     public Comparavel editarObjeto(String id) {
-        return new NpcDnd(id, this.nome, this.classeDificuldade, this.alinhamento, this.classeArmadura,
+        NpcDnd npc = new NpcDnd(id, this.nome, this.classeDificuldade, this.alinhamento, this.classeArmadura,
                 this.hitPoints, this.velocidade,
                 this.forca, this.destreza, this.constituicao, this.inteligencia, this.sabedoria, this.carisma);
+
+        npc.pericias.addAll(this.pericias);
+        npc.salvamentos.addAll(this.salvamentos);
+        npc.acoes.addAll(this.acoes);
+
+        return npc;
     }
 
     @Override
@@ -149,6 +160,14 @@ public class NpcDnd extends Comparavel{
 
     public void setAlinhamento(String alinhamento) {
         this.alinhamento = alinhamento;
+    }
+
+    public double getVelocidade() {
+        return velocidade;
+    }
+
+    public void setVelocidade(double velocidade) {
+        this.velocidade = velocidade;
     }
 
     public int getClasseArmadura() {
@@ -235,27 +254,38 @@ public class NpcDnd extends Comparavel{
         return new ArrayList<>(acoes);
     }
 
-    public boolean addPericia(PericiaDnd pericia) {
+    public boolean adicionarPericia(PericiaDnd pericia) {
         return pericias.add(pericia);
     }
+    public boolean adicionarPericia(String nome, String modificador) {
+        return pericias.add(new PericiaDnd(nome, modificador));
+    }
 
-    public boolean addAcao(Acao acao) {
+    public boolean adicionarAcao(Acao acao) {
         return acoes.add(acao);
     }
 
-    public boolean addSalvamento(SalvamentoDnd salvamento) {
+    public boolean adicionarAcao(String nome, String descricao) {
+        return acoes.add(new Acao(nome, descricao));
+    }
+
+    public boolean adicionarSalvamento(SalvamentoDnd salvamento) {
         return salvamentos.add(salvamento);
     }
 
-    public boolean removePericia(PericiaDnd pericia) {
+    public boolean adicionarSalvamento(String nome, String modificador) {
+        return salvamentos.add(new SalvamentoDnd(nome, modificador));
+    }
+
+    public boolean removerPericia(PericiaDnd pericia) {
         return pericias.remove(pericia);
     }
 
-    public boolean removeAcao(Acao acao) {
+    public boolean removerAcao(Acao acao) {
         return acoes.remove(acao);
     }
 
-    public boolean removeSalvamento(SalvamentoDnd salvamento) {
+    public boolean removerSalvamento(SalvamentoDnd salvamento) {
         return salvamentos.remove(salvamento);
     }
 }

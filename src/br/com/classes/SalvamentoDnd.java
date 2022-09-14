@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class SalvamentoDnd {
     private String atributo;
-    private int modificador;
+    private String modificador;
 
-    public SalvamentoDnd(String atributo, int modificador) {
+    public SalvamentoDnd(String atributo, String modificador) {
         this.atributo = atributo;
         this.modificador = modificador;
     }
@@ -19,11 +19,11 @@ public class SalvamentoDnd {
         this.atributo = atributo;
     }
 
-    public int getModificador() {
+    public String getModificador() {
         return modificador;
     }
 
-    public void setModificador(int modificador) {
+    public void setModificador(String modificador) {
         this.modificador = modificador;
     }
 

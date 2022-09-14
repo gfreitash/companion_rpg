@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class PericiaDnd {
     private String pericia;
-    private int modificador;
+    private String modificador;
 
-    public PericiaDnd(String pericia, int modificador) {
+    public PericiaDnd(String pericia, String modificador) {
         this.pericia = pericia;
         this.modificador = modificador;
     }
@@ -19,11 +19,11 @@ public class PericiaDnd {
         this.pericia = pericia;
     }
 
-    public int getModificador() {
+    public String getModificador() {
         return modificador;
     }
 
-    public void setModificador(int modificador) {
+    public void setModificador(String modificador) {
         this.modificador = modificador;
     }
 

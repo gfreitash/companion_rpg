@@ -1,3 +1,63 @@
 [
-
+  {
+    "nome": "Bandido",
+    "classeDificuldade": 0.125,
+    "alinhamento": "Neutral Evil",
+    "classeArmadura": 12,
+    "hitPoints": 11.0,
+    "velocidade": 30.0,
+    "forca": 11,
+    "destreza": 12,
+    "constituicao": 12,
+    "inteligencia": 10,
+    "sabedoria": 10,
+    "carisma": 10,
+    "pericias": [
+      {
+        "pericia": "Corpo a Corpo",
+        "modificador": "+4"
+      }
+    ],
+    "salvamentos": [
+      {
+        "atributo": "Percepção",
+        "modificador": "+4"
+      }
+    ],
+    "acoes": [
+      {
+        "nome": "Besta Leve",
+        "descricao": "Pode dar um tiro com sua besta como uma ação bônus"
+      }
+    ],
+    "identificador": "BANDIDO"
+  },
+  {
+    "nome": "Cubo Gelatinoso",
+    "classeDificuldade": 2.0,
+    "alinhamento": "True Neutral",
+    "classeArmadura": 6,
+    "hitPoints": 84.0,
+    "velocidade": 15.0,
+    "forca": 14,
+    "destreza": 3,
+    "constituicao": 20,
+    "inteligencia": 1,
+    "sabedoria": 6,
+    "carisma": 1,
+    "pericias": [
+      {
+        "pericia": "Melee Weapon Attack",
+        "modificador": "+4"
+      }
+    ],
+    "salvamentos": [],
+    "acoes": [
+      {
+        "nome": "Transparent",
+        "descricao": "Even when the cube is in plain sight, it takes a successful DC 15 Wisdom (Perception) check to spot a cube that has neither moved nor attacked. A creature that tries to enter the cube\u0027s space while unaware of the cube is surprised by the cube."
+      }
+    ],
+    "identificador": "CUBO_GELATINOSO"
+  }
 ]
