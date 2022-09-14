@@ -25,11 +25,6 @@ public class Item extends Comparavel {
         return new Item(id, item.getNome(), item.getDescricao(), item.getValor(), item.getTipo(), item.isMagico());
     }
 
-    @Override
-    public Comparavel getModelo(String id) {
-        return new Item(id);
-    }
-
     public enum TIPO {
         ARMA, ARMADURA, MISCELANIA
     }

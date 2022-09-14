@@ -17,7 +17,7 @@ import java.util.List;
 //objeto que implemente a interface Comparavel em um arquivo JSON.
 //Ela funcionará de forma analoga à classe ItemCRUD e NpcCRUD, mas servirá para
 //qualquer classe genérica. Utilizará o mesmo código, adaptando para o uso genérico.
-public class CrudGenerico<T extends Comparavel> implements CRUD<T> {
+public class CrudJson<T extends Comparavel> implements CRUD<T> {
     private final TypeToken<ArrayList<T>> tipoLista;
     private final String localizacaoArquivo;
     private final Gson gson;
@@ -26,7 +26,7 @@ public class CrudGenerico<T extends Comparavel> implements CRUD<T> {
     public static final String ITENS = "src/br/com/data/itens.json";
     public static final String NPCS = "src/br/com/data/npcs.json";
 
-    public CrudGenerico(TypeToken<ArrayList<T>> tipoLista, String localizacaoArquivo) {
+    public CrudJson(TypeToken<ArrayList<T>> tipoLista, String localizacaoArquivo) {
         this.tipoLista = tipoLista;
         this.localizacaoArquivo = localizacaoArquivo;
         gson = new GsonBuilder().setPrettyPrinting().create();

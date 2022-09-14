@@ -62,11 +62,6 @@ public class Mapa extends Comparavel{
     }
 
     @Override
-    public Comparavel getModelo(String id) {
-        return new Mapa(id);
-    }
-
-    @Override
     public Comparavel editarObjeto(String id) {
         return new Mapa(this.endereco, this.nome, id);
     }  

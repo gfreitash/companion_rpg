@@ -2,14 +2,14 @@ package io;
 
 import br.com.classes.Item;
 import br.com.classes.Mapa;
-import br.com.io.CrudGenerico;
+import br.com.io.CrudJson;
 import com.google.gson.reflect.TypeToken;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 public class CRUDTest {
-    private final CrudGenerico<Item> itemCRUD = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.ITENS);
+    private final CrudJson<Item> itemCRUD = new CrudJson<>(new TypeToken<>(){}, CrudJson.ITENS);
 
     @Test
     public void salvar() {
@@ -48,7 +48,7 @@ public class CRUDTest {
                 "Uma espada brilhante de prata. Ideal para caçar monstros",  10,
                 Item.TIPO.ARMA, false);
 
-        System.out.println(new CrudGenerico<>(tipoLista, CrudGenerico.ITENS).salvar(espada));
+        System.out.println(new CrudJson<>(tipoLista, CrudJson.ITENS).salvar(espada));
     }
 
     //editarGeneric() testa o método  //editarGeneric() editar() da classe GenericCRUD com o genérico sendo um Item
@@ -59,28 +59,28 @@ public class CRUDTest {
                 "Uma espada brilhante de prata. Ideal para caçar monstros",  10,
                 Item.TIPO.ARMA, false);
 
-        System.out.println(new CrudGenerico<>(tipoLista, CrudGenerico.ITENS).editar("SILVER_SWORD_48", espada));
+        System.out.println(new CrudJson<>(tipoLista, CrudJson.ITENS).editar("SILVER_SWORD_48", espada));
     }
 
     //deletarGeneric() testa o método deletar() da classe GenericCRUD com o genérico sendo um Item
     @Test
     public void deletarGeneric() {
         TypeToken<ArrayList<Item>> tipoLista = new TypeToken<>() {};
-        System.out.println(new CrudGenerico<>(tipoLista, CrudGenerico.ITENS).deletar("SILVER_SWORD_48"));
+        System.out.println(new CrudJson<>(tipoLista, CrudJson.ITENS).deletar("SILVER_SWORD_48"));
     }
 
     //obterGeneric() testa o método obter() da classe GenericCRUD com o genérico sendo um Item
     @Test
     public void obterGeneric() {
         TypeToken<ArrayList<Item>> tipoLista = new TypeToken<>() {};
-        System.out.println(new CrudGenerico<>(tipoLista, CrudGenerico.ITENS).obter("SILVER_SWORD_48"));
+        System.out.println(new CrudJson<>(tipoLista, CrudJson.ITENS).obter("SILVER_SWORD_48"));
     }
 
     //obterTodosGeneric() testa o método obterTodos() da classe GenericCRUD com o genérico sendo um Item
     @Test
     public void obterTodosGeneric() {
         TypeToken<ArrayList<Item>> tipoLista = new TypeToken<>() {};
-        System.out.println(new CrudGenerico<>(tipoLista, CrudGenerico.ITENS).obterTodos());
+        System.out.println(new CrudJson<>(tipoLista, CrudJson.ITENS).obterTodos());
     }
 
     //salvarGeneric2() testa o método salvar() da classe GenericCRUD com o genérico sendo um Mapa
@@ -89,6 +89,6 @@ public class CRUDTest {
         TypeToken<ArrayList<Mapa>> tipoLista = new TypeToken<>() {};
         Mapa mapa = new Mapa("src/br/com/data/mapas/Tautologia_teis.png", "Tautologia teis",
                 "Um mapa que mostra o caminho para a tautologia teis");
-        System.out.println(new CrudGenerico<>(tipoLista, CrudGenerico.MAPAS).salvar(mapa));
+        System.out.println(new CrudJson<>(tipoLista, CrudJson.MAPAS).salvar(mapa));
     }
 }

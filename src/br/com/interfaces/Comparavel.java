@@ -18,24 +18,13 @@ public abstract class Comparavel implements Comparable<Comparavel> {
         this.identificador = Comparavel.transformarIdentificador(identificador);
     }
     
-    public abstract Comparavel getModelo(String id);
-    
     public abstract Comparavel editarObjeto(String id);
-
-    @Override
-    public abstract int hashCode();
-
-    @Override
-    public abstract boolean equals(Object object);
-
-    @Override
-    public abstract String toString();
 
     public int compareTo(Comparavel o) {
         return identificador.compareTo(o.identificador);
     }
     
-    public static String transformarIdentificador(String identificador) {
+    private static String transformarIdentificador(String identificador) {
         return identificador.replace(" ", "_").toUpperCase(Locale.US);
     }
 

@@ -86,11 +86,6 @@ public class NpcDnd extends Comparavel{
     }
 
     @Override
-    public Comparavel getModelo(String id) {
-        return new NpcDnd(id);
-    }
-
-    @Override
     public Comparavel editarObjeto(String id) {
         NpcDnd npc = new NpcDnd(id, this.nome, this.classeDificuldade, this.alinhamento, this.classeArmadura,
                 this.hitPoints, this.velocidade,

@@ -5,14 +5,12 @@
 package br.com.ui;
 
 import br.com.classes.*;
-import br.com.interfaces.Comparavel;
-import br.com.io.CrudGenerico;
+import br.com.io.CrudJson;
 import com.google.gson.reflect.TypeToken;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -29,12 +27,12 @@ import java.nio.file.StandardCopyOption;
  *
  * @author gfreitash
  */
-public class Janela extends javax.swing.JFrame {
+public class CompanionUI extends javax.swing.JFrame {
 
     /**
      * Creates new form Janela
      */
-    public Janela() {
+    public CompanionUI() {
         initComponents();
         customInitComponents();
     }
@@ -91,8 +89,6 @@ public class Janela extends javax.swing.JFrame {
         editarItemDescricaoTextArea = new javax.swing.JTextArea();
         editarItemId = new javax.swing.JLabel();
         rollDicePanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -108,6 +104,8 @@ public class Janela extends javax.swing.JFrame {
         rollDiceButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         rollDiceResultadoTextArea = new javax.swing.JTextArea();
+        rolarDadosTituloLabel = new javax.swing.JLabel();
+        rolarDadosTituloSeparator = new javax.swing.JSeparator();
         mapaPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         listaMapas = new javax.swing.JPanel();
@@ -568,12 +566,6 @@ public class Janela extends javax.swing.JFrame {
 
         painelPrincipal.add(editarItemPanel, "editarItemCard");
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Rolar dados:");
-        jScrollPane1.setViewportView(jTextArea1);
-
         jTextField1.setEditable(false);
         jTextField1.setText("D4");
 
@@ -582,6 +574,12 @@ public class Janela extends javax.swing.JFrame {
 
         jTextField3.setEditable(false);
         jTextField3.setText("D8");
+
+        spinnerD4.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        spinnerD6.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        spinnerD8.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jTextField4.setEditable(false);
         jTextField4.setText("D10");
@@ -597,7 +595,13 @@ public class Janela extends javax.swing.JFrame {
             }
         });
 
-        rollDiceButton.setText("Roll");
+        spinnerD10.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        spinnerD12.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        spinnerD20.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        rollDiceButton.setText("Rolar");
         rollDiceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rollDiceButtonActionPerformed(evt);
@@ -612,6 +616,9 @@ public class Janela extends javax.swing.JFrame {
         rollDiceResultadoTextArea.setRows(5);
         rollDiceResultadoTextArea.setWrapStyleWord(true);
         jScrollPane2.setViewportView(rollDiceResultadoTextArea);
+
+        rolarDadosTituloLabel.setFont(new java.awt.Font("Noto Serif Medium", 0, 36)); // NOI18N
+        rolarDadosTituloLabel.setText("Rolar Dados");
 
         javax.swing.GroupLayout rollDicePanelLayout = new javax.swing.GroupLayout(rollDicePanel);
         rollDicePanel.setLayout(rollDicePanelLayout);
@@ -641,15 +648,25 @@ public class Janela extends javax.swing.JFrame {
                             .addComponent(jTextField3)
                             .addComponent(spinnerD8)
                             .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(spinnerD20)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spinnerD20))))
                 .addContainerGap(103, Short.MAX_VALUE))
+            .addGroup(rollDicePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(rollDicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rollDicePanelLayout.createSequentialGroup()
+                        .addComponent(rolarDadosTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(rolarDadosTituloSeparator, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         rollDicePanelLayout.setVerticalGroup(
             rollDicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rollDicePanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(rolarDadosTituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rolarDadosTituloSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addGroup(rollDicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1447,7 +1464,7 @@ public class Janela extends javax.swing.JFrame {
         }
         
         Item item = new Item(nome, descricao, valor, Item.TIPO.valueOf(tipo), isMagico);
-        CrudGenerico<Item> itemCrud = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.ITENS);
+        CrudJson<Item> itemCrud = new CrudJson<>(new TypeToken<>(){}, CrudJson.ITENS);
         if(itemCrud.salvar(item)) {
             JOptionPane.showMessageDialog(null, "O item foi salvo com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             criarItemNomeTextField.setText("");
@@ -1455,7 +1472,7 @@ public class Janela extends javax.swing.JFrame {
             criarItemTipoComboBox.setSelectedIndex(0);
             criarItemDescricaoTextArea.setText("");
             criarItemMagicoCheckbox.setSelected(false);
-        } else if(itemCrud.obter(Comparavel.transformarIdentificador(nome)) != null) {
+        } else if(itemCrud.obter(item.getIdentificador()) != null) {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o item.\nJá existe um item com esse nome.", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o item", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -1491,11 +1508,11 @@ public class Janela extends javax.swing.JFrame {
         }
         
         Item item = new Item(nome, descricao, valor, Item.TIPO.valueOf(tipo), isMagico);
-        CrudGenerico<Item> itemCrud = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.ITENS);
+        CrudJson<Item> itemCrud = new CrudJson<>(new TypeToken<>(){}, CrudJson.ITENS);
         if(itemCrud.editar(editarItemId.getText(),item)) {
             JOptionPane.showMessageDialog(null, "O item foi salvo com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             this.mostrarItensMenuItemActionPerformed(null);
-        } else if(itemCrud.obter(Comparavel.transformarIdentificador(nome)) != null) {
+        } else if(itemCrud.obter(item.getIdentificador()) != null) {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o item.\nJá existe um item com esse nome.", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o item", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -1588,7 +1605,7 @@ public class Janela extends javax.swing.JFrame {
             String out = "src/br/com/data/mapas/" + map.getName();
             Files.copy(Path.of(mapname), Path.of(out), StandardCopyOption.REPLACE_EXISTING);
             
-            CrudGenerico<Mapa> mc = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.MAPAS);
+            CrudJson<Mapa> mc = new CrudJson<>(new TypeToken<>(){}, CrudJson.MAPAS);
             if(!mc.salvar(new Mapa(out, map.getName()))) {
                 throw new IOException();
             }
@@ -1898,7 +1915,7 @@ public class Janela extends javax.swing.JFrame {
         }
 
         //Editando o NPC
-        CrudGenerico<NpcDnd> crud = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.NPCS);
+        CrudJson<NpcDnd> crud = new CrudJson<>(new TypeToken<>(){}, CrudJson.NPCS);
         if(crud.editar(nomeOriginal, npc)){
             JOptionPane.showMessageDialog(null, "NPC salvo com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
@@ -2211,7 +2228,7 @@ public class Janela extends javax.swing.JFrame {
         }
 
         //Salvando o NPC
-        CrudGenerico<NpcDnd> crud = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.NPCS);
+        CrudJson<NpcDnd> crud = new CrudJson<>(new TypeToken<>(){}, CrudJson.NPCS);
         if(crud.salvar(npc)){
             JOptionPane.showMessageDialog(null, "NPC salvo com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
@@ -2260,7 +2277,7 @@ public class Janela extends javax.swing.JFrame {
         GridBagConstraints gbc = new GridBagConstraints(); 
         gbc.insets = new Insets(5,5,5,5);
         
-        CrudGenerico<Mapa> mc = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.MAPAS);
+        CrudJson<Mapa> mc = new CrudJson<>(new TypeToken<>(){}, CrudJson.MAPAS);
         
         List <Mapa> mapas = mc.obterTodos();
         
@@ -2284,40 +2301,6 @@ public class Janela extends javax.swing.JFrame {
         cl.show(painelPrincipal, "inicioCard");
     }//GEN-LAST:event_inicioMenuMousePressed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Janela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Janela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Janela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Janela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Janela().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMapa;
@@ -2407,12 +2390,10 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenu inicioMenu;
     private javax.swing.JPanel inicioPanel;
     private javax.swing.JMenu itensMenu;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -2472,6 +2453,8 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JTextField npcVelocidadeTextField;
     private javax.swing.JMenu npcsMenu;
     private javax.swing.JPanel painelPrincipal;
+    private javax.swing.JLabel rolarDadosTituloLabel;
+    private javax.swing.JSeparator rolarDadosTituloSeparator;
     private javax.swing.JButton rollDiceButton;
     private javax.swing.JMenu rollDiceMenu;
     private javax.swing.JPanel rollDicePanel;
@@ -2515,7 +2498,7 @@ public class Janela extends javax.swing.JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         
-        CrudGenerico<Item> itemCRUD = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.ITENS);
+        CrudJson<Item> itemCRUD = new CrudJson<>(new TypeToken<>(){}, CrudJson.ITENS);
         List<Item> itens = itemCRUD.obterTodos();
         
         for(int i = 0, count = 0; count < itens.size(); i++) {
@@ -2562,7 +2545,7 @@ public class Janela extends javax.swing.JFrame {
         
         if(resposta != 0) {return;}
         
-        CrudGenerico<Item> itemCRUD = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.ITENS);
+        CrudJson<Item> itemCRUD = new CrudJson<>(new TypeToken<>(){}, CrudJson.ITENS);
 
         if(itemCRUD.deletar(item.getIdentificador())) {
             JOptionPane.showMessageDialog(null, "O item foi deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -2578,7 +2561,7 @@ public class Janela extends javax.swing.JFrame {
         
         if(resposta != 0) {return;}
         
-        CrudGenerico<Item> mc = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.MAPAS);
+        CrudJson<Item> mc = new CrudJson<>(new TypeToken<>(){}, CrudJson.MAPAS);
 
         if(mc.deletar(mapa.getIdentificador())) {
             JOptionPane.showMessageDialog(null, "O mapa foi deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -2596,7 +2579,7 @@ public class Janela extends javax.swing.JFrame {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.gridx = 0;
 
-        CrudGenerico<NpcDnd> npcCRUD = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.NPCS);
+        CrudJson<NpcDnd> npcCRUD = new CrudJson<>(new TypeToken<>(){}, CrudJson.NPCS);
         List<NpcDnd> npcs = npcCRUD.obterTodos();
 
         for(int i = 0;  i < npcs.size(); i++) {
@@ -2685,7 +2668,7 @@ public class Janela extends javax.swing.JFrame {
 
         if(resposta != 0) {return;}
 
-        CrudGenerico<NpcDnd> npcCRUD = new CrudGenerico<>(new TypeToken<>(){}, CrudGenerico.NPCS);
+        CrudJson<NpcDnd> npcCRUD = new CrudJson<>(new TypeToken<>(){}, CrudJson.NPCS);
 
         if(npcCRUD.deletar(npc.getIdentificador())) {
             JOptionPane.showMessageDialog(null, "O NPC foi deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
